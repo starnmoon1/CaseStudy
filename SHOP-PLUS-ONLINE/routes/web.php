@@ -42,5 +42,6 @@ Route::prefix('product')->group(function () {
     Route::get('/cart', 'ProductController@formCart')->name('product.cart');
 });
 
+//nhanh dev
 
 
