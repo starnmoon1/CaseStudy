@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\repositories\Products;
+namespace App\Http\Repositories\Products;
 
 
 class CategoryRepo implements CategoryRepoInterface
