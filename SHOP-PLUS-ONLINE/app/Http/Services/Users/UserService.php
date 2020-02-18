@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Http\services\users;
+namespace App\Http\services\Users;
 
 
-use App\Http\repositories\users\UserRepo;
+use App\Http\Repositories\Users\UserRepo;
 use App\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Hash;

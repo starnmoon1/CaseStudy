@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\UserRequest;
-use App\Http\services\users\UserService;
+use App\Http\services\Users\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -22,7 +22,7 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
-    public function postComment($request, $user_id)
+    public function postComment($request, $id)
     {
         $comment = new Comment();
         $user = $this->userService->findById($id);

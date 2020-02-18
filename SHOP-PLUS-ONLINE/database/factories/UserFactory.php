@@ -2,7 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Category;
+use App\Product;
 use App\User;
+
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -26,3 +29,21 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->define(Product::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'category_id' => $faker->randomDigit,
+        'description' => $faker->text,
+        'content' => $faker->text,
+        'image' => $faker->text,
+        'price' => $faker->randomNumber(2),
+    ];
+});
+
+$factory->define(Category::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
+
