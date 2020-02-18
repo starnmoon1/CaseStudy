@@ -8,10 +8,12 @@ Route::get('/admin', function (){
 
 Route::post('/','UserController@store')->name('user.store');
 
-Route::get('/','HomeController@index')->name('home');
+
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
 
+//route cua hoan khong xoa
+Route::get('/','HomeController@index')->name('home');
 Route::prefix('user')->group(function () {
     Route::get('/', 'UserController@index')->name('user.index'); //done
     Route::get('/create', 'UserController@create')->name('user.create'); //done
