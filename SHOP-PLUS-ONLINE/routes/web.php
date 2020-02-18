@@ -45,5 +45,8 @@ Route::prefix('product')->group(function () {
 });
 
 //nhanh dev
+//thang
+Route::post('/comment', 'UserController@postComment')->name('comment');
+
 
 
