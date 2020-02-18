@@ -2,12 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin', function (){
-   return view('admin');
-});
-
 Route::post('/','UserController@store')->name('user.store');
-
 
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
@@ -47,8 +42,5 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-//nhanh dev
-//thang
+//nhanh anh thang
 Route::post('/comment', 'UserController@postComment')->name('comment');
-
-
