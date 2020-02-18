@@ -7,11 +7,11 @@ Route::get('/admin', function (){
 });
 
 Route::post('/','UserController@store')->name('user.store');
-
 Route::get('/','HomeController@index')->name('home');
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
 
+Route::prefix('admin')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('/', 'UserController@index')->name('user.index'); //done
     Route::get('/create', 'UserController@create')->name('user.create'); //done
@@ -37,10 +37,9 @@ Route::prefix('product')->group(function () {
     Route::get('/delete/{id}', 'ProductController@delete')->name('product.delete'); //done
     Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
     Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
-    Route::get('/detail', 'ProductController@detail')->name('product.detail'); //done
-    Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
-    Route::get('/cart', 'ProductController@formCart')->name('product.cart');
+    });
 });
+
 
 
 
