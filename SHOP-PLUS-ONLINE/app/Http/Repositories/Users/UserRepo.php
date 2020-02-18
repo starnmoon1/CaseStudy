@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\repositories\Users;
+namespace App\Http\Repositories\Users;
 
 
 use App\User;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\repositories\Categories;
+namespace App\Http\Repositories\Categories;
 
 
 interface CategoryRepoInterface extends RepoInterface
