@@ -48,4 +48,7 @@ Route::prefix('admin')->group(function () {
 });
 
 //nhanh dev
+//thang
+Route::post('/comment', 'UserController@postComment')->name('comment');
+
 

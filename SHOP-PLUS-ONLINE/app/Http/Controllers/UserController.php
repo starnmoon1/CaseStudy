@@ -22,7 +22,7 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
-    public function postComment($request, $user_id)
+    public function postComment($request, $id)
     {
         $comment = new Comment();
         $user = $this->userService->findById($id);
