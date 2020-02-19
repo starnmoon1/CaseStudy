@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\Categories\CategoryServiceInterface;
 use App\Http\Services\Products\ProductServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -48,9 +49,14 @@ class ProductController extends Controller
     }
 
     public function delete($id) {
-        $product = $this->productService->findById($id);
-        $this->productService->delete($product);
+        $this->productService->delete($id);
         return redirect()->route('product.list');
+    }
+
+    public function search(Request $request)
+    {
+        $products = $this->productService->search($request);
+        return view('product.list', compact('products'));
     }
 
     public function checkout()
