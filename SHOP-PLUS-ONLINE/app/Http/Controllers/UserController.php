@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\UserRequest;
-use App\Http\services\Users\UserService;
+use App\Http\Services\Users\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
