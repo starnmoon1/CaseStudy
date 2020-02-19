@@ -10,6 +10,6 @@ interface ServiceInterface
     public function create($request);
     public function delete($obj);
     public function update($request, $id);
-    public function find($id);
+    public function findById($id);
     public function search($keyword);
 }

@@ -7,7 +7,7 @@ namespace App\Http\Repositories\Products;
 use App\Http\Services\Products\ProductServiceInterface;
 use App\Product;
 
-class ProductRepo implements ProductServiceInterface
+class ProductRepo implements ProductRepoInterface
 {
     protected $product;
     public function __construct(Product $product)
@@ -17,31 +17,31 @@ class ProductRepo implements ProductServiceInterface
 
     public function getAll()
     {
-        // TODO: Implement getAll() method.
-    }
-
-    public function create($request)
-    {
-        // TODO: Implement create() method.
+        return $this->product->all();
     }
 
     public function delete($obj)
     {
-        // TODO: Implement delete() method.
+        $obj->delete();
     }
 
-    public function update($request, $id)
+    public function update($obj)
     {
-        // TODO: Implement update() method.
-    }
-
-    public function find($id)
-    {
-        // TODO: Implement find() method.
+        $obj->save();
     }
 
     public function search($keyword)
     {
         // TODO: Implement search() method.
+    }
+
+    public function store($obj)
+    {
+       $obj->save();
+    }
+
+    public function findById($id)
+    {
+        return $this->product->findOrFail($id);
     }
 }

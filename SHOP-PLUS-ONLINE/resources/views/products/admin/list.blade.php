@@ -10,29 +10,38 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Image</th>
+                            <th>Description</th>
+                            <th>Content</th>
+                            <th>Price</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
 
-                        <tbody>
+                        @foreach($products as $product)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>{{$product->id}}</td>
+                            <td>{{$product->name}}</td>
+                            <td>
+                                <img src="{{asset('storage/images/'.$product->image)}}" width="150">
+                            </td>
+                            <td>{{$product->description}}</td>
+                            <td>{{$product->content}}</td>
+                            <td>{{$product->price}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{route('product.edit', $product->id)}}">Edit</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{route('product.delete', $product->id)}}" onclick="return confirm('Are you sure delete!')">Delete</a>
+                            </td>
                         </tr>
-
+                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
-        DataTables Product
     </div>
 @endsection

@@ -21,22 +21,22 @@ class CategoryRepo implements CategoryRepoInterface
 
     public function store($obj)
     {
-        // TODO: Implement store() method.
+        $obj->save();
     }
 
     public function update($obj)
     {
-        // TODO: Implement update() method.
+        $obj->save();
     }
 
-    public function delete($id)
+    public function delete($obj)
     {
-        // TODO: Implement delete() method.
+        $obj->delete();
     }
 
     public function findById($id)
     {
-        // TODO: Implement findById() method.
+        return $this->category->findOrFail($id);
     }
 
     public function search($id)
