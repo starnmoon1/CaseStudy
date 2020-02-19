@@ -6,6 +6,12 @@ Route::post('/','UserController@store')->name('user.store');
 
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
+//thang
+Route::post('/login','LoginController@login')->name('postLogin');
+Route::get('/','LoginController@logout')->name('logout');
+Route::middleware('CheckLogin')->prefix('users')->group(function (){
+    Route::get('home', 'UserController@index')->name('login.home');
+});
 
 //route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home');
@@ -15,7 +21,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/', 'UserController@index')->name('user.index'); //done
         Route::get('/create', 'UserController@create')->name('user.create'); //done
         Route::post('/create', 'UserController@store')->name('user.store'); //done
-        Route::get('/delete/{id}', 'UserController@delete')->name('user.delete'); //done
+        Route::get('/delete/{id}', 'UserController@destroy')->name('user.destroy'); //done
+        Route::get('{id}/show','UserController@show')->name('user.show');
         Route::get('/edit/{id}', 'UserController@edit')->name('user.edit'); //done
         Route::post('/edit/{id}', 'UserController@update')->name('user.update');//done
     });
