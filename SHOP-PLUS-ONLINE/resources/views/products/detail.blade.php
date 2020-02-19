@@ -327,6 +327,7 @@
 
                                     <!-- /Comment -->
                                     <div class="col-md-9">
+                                        <form action="{{route('comment')}}">
                                         <div id="reviews">
                                             <ul class="reviews">
                                                 <li>
@@ -345,11 +346,11 @@
                                                 <li>
                                                     <div class="review-body">
                                                         <div>
-                                                            <form action="/action_page.php">
-                                                                <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
-                                                                <button type="submit" class="btn btn-success">Post</button>
-                                                                <button type="submit" class="btn btn-secondary">Cancel</button>
-                                                            </form>
+
+                                                                <textarea id="subject" name="comnent_user" placeholder="Write something.."></textarea>
+                                                                <button type="submit" href="{{route('product.detail')}}" class="btn btn-success">Post</button>
+                                                                <button type="reset" class="btn btn-secondary">Cancel</button>
+
                                                         </div>
                                                     </div>
                                                 </li>
@@ -363,6 +364,7 @@
                                                 <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                                             </ul>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
