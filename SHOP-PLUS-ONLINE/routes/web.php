@@ -21,7 +21,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/', 'UserController@index')->name('user.index'); //done
         Route::get('/create', 'UserController@create')->name('user.create'); //done
         Route::post('/create', 'UserController@store')->name('user.store'); //done
-        Route::get('/delete/{id}', 'UserController@delete')->name('user.delete'); //done
+        Route::get('/delete/{id}', 'UserController@destroy')->name('user.destroy'); //done
+        Route::get('{id}/show','UserController@show')->name('user.show');
         Route::get('/edit/{id}', 'UserController@edit')->name('user.edit'); //done
         Route::post('/edit/{id}', 'UserController@update')->name('user.update');//done
     });

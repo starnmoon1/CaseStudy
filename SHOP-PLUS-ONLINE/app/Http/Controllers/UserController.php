@@ -19,7 +19,38 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $this->userService->create($request);
-        return redirect()->route('home');
+        return redirect()->route('login');
+    }
+
+    public function index()
+    {
+        $users = $this->userService->getAll();
+        return view('users.admin.list', compact('users'));
+    }
+
+    public function destroy($id)
+    {
+        $this->userService->destroy($id);
+        return redirect()->route('user.index');
+    }
+
+    public function show($id)
+    {
+        $user = $this->userService->findById($id);
+
+        return view('users.admin.edit', compact('user'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $this->userService->update($request, $id);
+        return redirect()->route('user.index');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->userService->update($request, $id);
+     return redirect()->route('user.index');
     }
 
 }
