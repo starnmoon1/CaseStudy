@@ -34,9 +34,9 @@ class CategoryService implements CategoryServiceInterface
         // TODO: Implement update() method.
     }
 
-    public function find($id)
+    public function findById($id)
     {
-        // TODO: Implement find() method.
+
     }
 
     public function search($keyword)

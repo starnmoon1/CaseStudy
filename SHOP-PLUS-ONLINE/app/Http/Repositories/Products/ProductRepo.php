@@ -20,24 +20,14 @@ class ProductRepo implements ProductRepoInterface
         return $this->product->all();
     }
 
-    public function create($request)
-    {
-        // TODO: Implement create() method.
-    }
-
     public function delete($obj)
     {
-        // TODO: Implement delete() method.
+        $obj->delete();
     }
 
     public function update($obj)
     {
-        // TODO: Implement update() method.
-    }
-
-    public function find($id)
-    {
-        // TODO: Implement find() method.
+        $obj->save();
     }
 
     public function search($keyword)
@@ -47,11 +37,11 @@ class ProductRepo implements ProductRepoInterface
 
     public function store($obj)
     {
-        // TODO: Implement store() method.
+       $obj->save();
     }
 
     public function findById($id)
     {
-        // TODO: Implement findById() method.
+        return $this->product->findOrFail($id);
     }
 }

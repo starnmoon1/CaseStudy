@@ -7,10 +7,10 @@
 
                 <div class="col-lg-12">
                     <div class="p-5">
-                        <form class="user" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+                        <form class="user" method="post" action="{{route('product.update', $product->id)}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <input type="text" name='product_name' class="form-control form-control-user" id="exampleInputEmail" placeholder="Name Product">
+                                <input type="text" name='product_name' value="{{$product->name}}" class="form-control form-control-user" id="exampleInputEmail" placeholder="Name Product">
                             </div>
 
                             <div class="input-group mb-3">
@@ -25,11 +25,11 @@
                             </div>
 
                             <div class="form-group">
-                                <input name="product_description" type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Description Product">
+                                <input name="product_description" value="{{$product->description}}" type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Description Product">
                             </div>
 
                             <div class="form-group">
-                                <textarea name="product_content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea name="product_content" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$product->content}}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -37,11 +37,11 @@
                             </div>
 
                             <div class="form-group">
-                                <input name="product_price" type="number" class="form-control form-control-user" id="exampleInputEmail" placeholder="Price Product">
+                                <input name="product_price" value="{{$product->price}}" nametype="number" class="form-control form-control-user" id="exampleInputEmail" placeholder="Price Product">
                             </div>
 
                             <button  class="btn btn-success btn-user btn-block">
-                                Create Product
+                                Update
                             </button>
                         </form>
                     </div>
