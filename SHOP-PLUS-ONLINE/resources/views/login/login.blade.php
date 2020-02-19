@@ -19,7 +19,7 @@
             <form action="{{route('postLogin')}}" method="post">
                 @csrf
                 <div class="pom-agile">
-                    <input placeholder="E-mail" name="email" class="user" type="email" required="">
+                    <input placeholder="E-mail" name="email" class="user" type="text" required="">
                     <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                 </div>
                 <div class="pom-agile">

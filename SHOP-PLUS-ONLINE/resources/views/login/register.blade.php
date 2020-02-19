@@ -20,21 +20,21 @@
             <form action="{{route('user.store')}}" method="post">
                 @csrf
                 <div class="pom-agile">
-                    <input placeholder="Enter your name" name="name" class="pass" type="text" required="">
+                    <input placeholder="Enter your name" name="name"  class="pass" type="text" required="">
                     <span class="icon2"><i class="fa fa-user" aria-hidden="true"></i></span>
                 </div>
 
                 <div class="pom-agile">
-                    <input placeholder="Enter your email" name="email" class="pass" type="email" required="">
+                    <input placeholder="Enter your email" name="email" class="pass" type="text" required="">
                     <span class="icon2">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
 
                 <div class="pom-agile">
-                    <input placeholder="Enter your phone" name="phone" class="pass" type="" required="">
+                    <input placeholder="Enter your phone" name="phone" class="pass" type="text" required="">
                     <span class="icon2">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <i class="fas fa-phone-square"></i>
                     </span>
                 </div>
 
@@ -44,7 +44,7 @@
                 </div>
                 <div class="sub-w3l login">
                     <div class="right-w3l">
-                        <input type="submit" value="Login">
+                        <input type="submit" value="Register">
                     </div>
                 </div>
             </form>
@@ -54,5 +54,6 @@
         <p><a href="{{route('home')}}">Shop Plus+</a></p>
     </div>
 </div>
+<script src="https://kit.fontawesome.com/92c99bd371.js" crossorigin="anonymous"></script>
 </body>
 </html>
