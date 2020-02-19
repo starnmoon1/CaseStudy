@@ -4,10 +4,12 @@
 namespace App\Http\Services\Categories;
 
 
+use App\Http\Repositories\Categories\CategoryRepoInterface;
+
 class CategoryService implements CategoryServiceInterface
 {
     protected $categoryRepo;
-    public function __construct($categoryRepo)
+    public function __construct(CategoryRepoInterface $categoryRepo)
     {
         $this->categoryRepo=$categoryRepo;
     }

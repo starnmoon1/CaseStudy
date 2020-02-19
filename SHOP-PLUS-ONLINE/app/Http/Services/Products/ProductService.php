@@ -4,17 +4,20 @@
 namespace App\Http\Services\Products;
 
 
+use App\Http\Repositories\Products\ProductRepoInterface;
+
 class ProductService implements ProductServiceInterface
 {
     protected $productRepo;
-    public function __construct($productRepo)
+
+    public function __construct(ProductRepoInterface $productRepo)
     {
         $this->productRepo=$productRepo;
     }
 
     public function getAll()
     {
-        // TODO: Implement getAll() method.
+        return $this->productRepo->getAll();
     }
 
     public function create($request)
