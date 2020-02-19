@@ -1,23 +1,20 @@
 <?php
 
 
-namespace App\Http\Repositories\Products;
+namespace App\Http\Services\Categories;
 
 
-use App\Http\Services\Products\ProductServiceInterface;
-use App\Product;
-
-class ProductRepo implements ProductServiceInterface
+class CategoryService implements CategoryServiceInterface
 {
-    protected $product;
-    public function __construct(Product $product)
+    protected $categoryRepo;
+    public function __construct($categoryRepo)
     {
-        $this->product=$product;
+        $this->categoryRepo=$categoryRepo;
     }
 
     public function getAll()
     {
-        // TODO: Implement getAll() method.
+        return $this->categoryRepo->getAll();
     }
 
     public function create($request)

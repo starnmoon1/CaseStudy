@@ -1,18 +1,15 @@
 <?php
 
 
-namespace App\Http\Repositories\Products;
+namespace App\Http\Services\Products;
 
 
-use App\Http\Services\Products\ProductServiceInterface;
-use App\Product;
-
-class ProductRepo implements ProductServiceInterface
+class ProductService implements ProductServiceInterface
 {
-    protected $product;
-    public function __construct(Product $product)
+    protected $productRepo;
+    public function __construct($productRepo)
     {
-        $this->product=$product;
+        $this->productRepo=$productRepo;
     }
 
     public function getAll()
