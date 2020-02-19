@@ -22,10 +22,10 @@
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="">Edit</a>
+                                    <a class="btn btn-primary" href="{{route('category.edit', $category->id)}}">Edit</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" href="">Delete</a>
+                                    <a class="btn btn-danger" href="{{route('category.delete', $category->id)}}" onclick="return(confirm('Are you sure delete'))">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

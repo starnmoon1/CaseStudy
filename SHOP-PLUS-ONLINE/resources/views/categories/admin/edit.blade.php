@@ -10,11 +10,11 @@
                         <form class="user" method="post" action="{{route('category.store')}}">
                             @csrf
                             <div class="form-group">
-                                <input type="text" name="category_name" class="form-control form-control-user" id="exampleInputEmail" placeholder="Category">
+                                <input type="text" value="{{$category->name}}" name="category_name" class="form-control form-control-user" id="exampleInputEmail" placeholder="Category">
                             </div>
 
                             <button class="btn btn-success btn-user btn-block">
-                                Create Category
+                                Update Category
                             </button>
                         </form>
                     </div>

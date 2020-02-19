@@ -35,7 +35,7 @@
                                 <a class="btn btn-primary" href="{{route('product.edit', $product->id)}}">Edit</a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="{{route('product.delete', $product->id)}}">Delete</a>
+                                <a class="btn btn-danger" href="{{route('product.delete', $product->id)}}" onclick="return confirm('Are you sure delete!')">Delete</a>
                             </td>
                         </tr>
                         @endforeach

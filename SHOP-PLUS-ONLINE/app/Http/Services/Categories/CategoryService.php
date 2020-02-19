@@ -4,7 +4,9 @@
 namespace App\Http\Services\Categories;
 
 
+use App\Category;
 use App\Http\Repositories\Categories\CategoryRepoInterface;
+use App\Product;
 
 class CategoryService implements CategoryServiceInterface
 {
@@ -21,22 +23,27 @@ class CategoryService implements CategoryServiceInterface
 
     public function create($request)
     {
-        // TODO: Implement create() method.
+        $category = new Category();
+        $category->name = $request->category_name;
+        $this->categoryRepo->store($category);
     }
 
     public function delete($obj)
     {
-        // TODO: Implement delete() method.
+        $this->categoryRepo->delete($obj);
     }
 
     public function update($request, $id)
     {
-        // TODO: Implement update() method.
+        $category = $this->categoryRepo->findById($id);
+        $category->name = $request->category_name;
+        $this->categoryRepo->update($category);
+
     }
 
     public function findById($id)
     {
-
+        return $this->categoryRepo->findById($id);
     }
 
     public function search($keyword)

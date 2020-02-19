@@ -21,14 +21,4 @@ class UserController extends Controller
         $this->userService->create($request);
         return redirect()->route('home');
     }
-
-    public function postComment($request, $id)
-    {
-        $comment = new Comment();
-        $user = $this->userService->findById($id);
-        $comment->fill($request->all());
-        $comment['user_id'] = $user->id;
-        $comment->save();
-
-    }
 }
