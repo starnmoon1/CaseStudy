@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\services\Users;
+namespace App\Http\Services\Users;
 
 
 interface ServiceInterface

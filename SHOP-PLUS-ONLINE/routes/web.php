@@ -6,6 +6,12 @@ Route::post('/','UserController@store')->name('user.store');
 
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
+//thang
+Route::post('/login','LoginController@login')->name('postLogin');
+Route::get('/','LoginController@logout')->name('logout');
+Route::middleware('CheckLogin')->prefix('users')->group(function (){
+    Route::get('home', 'UserController@index')->name('login.home');
+});
 
 //route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home');
