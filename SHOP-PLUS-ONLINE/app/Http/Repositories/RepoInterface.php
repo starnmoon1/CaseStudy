@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\repositories;
+namespace App\Http\Repositories;
 
 
 interface RepoInterface
