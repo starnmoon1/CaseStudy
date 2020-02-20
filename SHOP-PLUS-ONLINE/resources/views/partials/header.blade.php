@@ -7,7 +7,7 @@
                 <li><a href="#"><i class="fa fa-phone"></i>{{\Illuminate\Support\Facades\Auth::user()->phone}}</a></li>
                 <li><a href="#"><i class="fa fa-envelope-o"></i> {{\Illuminate\Support\Facades\Auth::user()->email}}</a></li>
                 <li><a href="#"><i class="fa fa-map-marker"></i> {{\Illuminate\Support\Facades\Auth::user()->name}}</a></li>
-                   @endif
+                @endif
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="{{route('login')}}">Login</a></li>

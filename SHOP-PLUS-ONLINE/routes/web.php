@@ -14,7 +14,7 @@ Route::middleware('CheckLogin')->prefix('users')->group(function (){
 });
 
 
-Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
+Route::get('/','HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search')->name('product.search');
 
 Route::prefix('admin')->group(function () {
@@ -56,16 +56,6 @@ Route::prefix('admin')->group(function () {
 Route::get('export', 'ExportController@export')->name('export');
 Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
-
-
-//login google
-Route::get('google', function () {
-    return view('googleAuth');
-});
-Route::get('/google', 'SocialController@redirectToGoogle');
-Route::get('/google/callback', 'SocialController@handleGoogleCallback');
-
-
 
 //nhanh anh thang
 Route::post('/comment', 'UserController@postComment')->name('comment');
