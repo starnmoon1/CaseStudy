@@ -2,9 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Route::post('/','UserController@store')->name('user.store');
+//long
+
 Route::get('cart','CartController@index');
 Route::get('add-to-cart/{id}','CartController@addToCart')->name('addToCart');
+
+Route::patch('update-cart', 'CartController@update');
+
+Route::delete('remove-from-cart', 'CartController@remove');
+
+//Route::post('/','UserController@store')->name('user.store');
+
 
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
