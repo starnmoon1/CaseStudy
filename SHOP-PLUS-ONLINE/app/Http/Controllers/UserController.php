@@ -19,6 +19,7 @@ class UserController extends Controller
 
     public function store(RegisterRequest $request)
     {
+
         $this->userService->create($request);
         return redirect()->route('login');
     }

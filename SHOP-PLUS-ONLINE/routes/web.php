@@ -18,11 +18,15 @@ Route::middleware('CheckLogin')->prefix('users')->group(function (){
 //route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 
+
 //route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 
 
 Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
+
+Route::get('/','HomeController@index')->name('home');
+
 Route::get('/search', 'HomeController@search')->name('product.search');
 
 
@@ -69,16 +73,6 @@ Route::prefix('admin')->group(function () {
 Route::get('export', 'ExportController@export')->name('export');
 Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
-
-
-//login google
-Route::get('google', function () {
-    return view('googleAuth');
-});
-Route::get('/google', 'SocialController@redirectToGoogle');
-Route::get('/google/callback', 'SocialController@handleGoogleCallback');
-
-
 
 //nhanh anh thang
 Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');

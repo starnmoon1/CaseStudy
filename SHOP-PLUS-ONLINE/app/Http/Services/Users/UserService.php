@@ -27,6 +27,7 @@ class UserService implements ServiceInterface
     {
         $user = new User();
         $user->fill($request->all());
+        $user->role = 2;
         $user['password'] = Hash::make($request->password);
         $this->userRepo->storeOrUpdate($user);
     }
