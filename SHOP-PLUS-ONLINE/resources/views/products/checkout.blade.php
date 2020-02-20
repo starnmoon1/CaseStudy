@@ -111,14 +111,18 @@
                             <div><strong>TOTAL</strong></div>
                         </div>
                         <div class="order-products">
-                            <div class="order-col">
-                                <div>1x Product Name Goes Here</div>
-                                <div>$980.00</div>
-                            </div>
-                            <div class="order-col">
-                                <div>2x Product Name Goes Here</div>
-                                <div>$980.00</div>
-                            </div>
+                            <?php $total = 0 ?>
+                            @foreach((array) session('cart') as $id => $details)
+                                <?php $total += $details['price'] * $details['quantity'] ?>
+                            @endforeach
+
+                            @foreach(session('cart') as $id => $details)
+
+                                <div class="order-col">
+                                    <div>{{ $details['name'] }}</div>
+                                    <div>${{ number_format($details['price']) }}</div>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="order-col">
                             <div>Shiping</div>
@@ -126,7 +130,7 @@
                         </div>
                         <div class="order-col">
                             <div><strong>TOTAL</strong></div>
-                            <div><strong class="order-total">$2940.00</strong></div>
+                            <div><strong class="order-total">${{number_format($total)}}</strong></div>
                         </div>
                     </div>
                     <div class="payment-method">

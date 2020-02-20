@@ -107,14 +107,13 @@
                             <div><strong>TOTAL</strong></div>
                         </div>
                         <div class="order-products">
+                            @foreach(session('cart') as $id => $details)
                             <div class="order-col">
-                                <div>1x Product Name Goes Here</div>
-                                <div>$980.00</div>
+                                <div>{{ $details['name'] }}</div>
+                                <div>${{ number_format($details['price']) }}</div>
                             </div>
-                            <div class="order-col">
-                                <div>2x Product Name Goes Here</div>
-                                <div>$980.00</div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div class="order-col">
                             <div>Shiping</div>
@@ -122,7 +121,7 @@
                         </div>
                         <div class="order-col">
                             <div><strong>TOTAL</strong></div>
-                            <div><strong class="order-total">$2940.00</strong></div>
+                            <div><strong class="order-total">${{ number_format($total) }}</strong></div>
                         </div>
                     </div>
                     <div class="payment-method">
@@ -176,7 +175,7 @@
         <!-- /container -->
     </div>
 
-
+@include('partials.footer')
 
 
 
@@ -215,6 +214,12 @@
         });
 
     </script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/slick.min.js')}}"></script>
+<script src="{{asset('js/nouislider.min.js')}}"></script>
+<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>
 
