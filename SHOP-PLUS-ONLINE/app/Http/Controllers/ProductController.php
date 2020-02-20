@@ -66,7 +66,6 @@ class ProductController extends Controller
     }
 
 
-
     public function checkout()
     {
         return view('products.checkout');
