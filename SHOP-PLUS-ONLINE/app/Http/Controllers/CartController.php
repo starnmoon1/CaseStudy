@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bill;
+use App\BillDetail;
 use App\Category;
 use App\Customer;
 use App\Product;
@@ -109,11 +110,14 @@ class CartController extends Controller
         {
             $billDetail = new BillDetail;
             $billDetail->bill_id = $bill->id;
-            $billDetail->product_id = $details->id;
-            $billDetail->quantily = $details->qty;
-            $billDetail->price = $details->price;
+            $billDetail->product_id = $id;
+            $billDetail->quantity = $details['quantity'];
+            $billDetail->price = $details['price'];
             $billDetail->save();
         }
+
+        return view('products.bill', compact('billDetail','bill','customer'))->with('success', 'Stock has been added');;
+
 
     }
 
