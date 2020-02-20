@@ -44,18 +44,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', 'ProductController@delete')->name('product.delete'); //done
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
-
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
         Route::get('/cart', 'ProductController@formCart')->name('product.cart');
-        Route::get('detail', 'ProductController@detail')->name('product.detail'); //done
     });
 });
 
-//import and export nhom hoan
-//->name('formImport'); check middleware
+Route::get('product/detail/{id}', 'ProductController@detail')->name('product.detail'); //done
+
+//done...
 Route::get('export', 'ExportController@export')->name('export');
 Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
 
-//nhanh anh thang
+//comment
 Route::post('/comment', 'UserController@postComment')->name('comment');
