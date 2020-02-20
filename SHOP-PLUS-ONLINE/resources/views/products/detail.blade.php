@@ -327,7 +327,7 @@
 
                                     <!-- /Comment -->
                                     <div class="col-md-9">
-                                        <form method="post" action="{{route('comment')}}">
+                                        <form method="post" action="{{route('comment', $product->id)}}">
                                             @csrf
                                         <div id="reviews">
                                             <ul class="reviews">

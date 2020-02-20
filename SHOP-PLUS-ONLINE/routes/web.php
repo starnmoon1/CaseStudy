@@ -66,7 +66,7 @@ Route::get('importExportView', 'ExportController@importExportView')->name('impor
 Route::post('import', 'ExportController@import')->name('import');
 
 //nhanh anh thang
-Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');
+Route::post('product/detail/{id}', 'CommentController@postComments')->name('comment');
 Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
 
-Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');
+Route::get('product/detail/{id}', 'ProductController@detail')->name('product.detail');
