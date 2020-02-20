@@ -48,7 +48,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', 'ProductController@delete')->name('product.delete'); //done
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
-        Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');
+
 
 
 //        Route::get('/detail', 'ProductController@detail')->name('product.detail'); //done
@@ -69,3 +69,4 @@ Route::post('import', 'ExportController@import')->name('import');
 Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');
 Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
 
+Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');
