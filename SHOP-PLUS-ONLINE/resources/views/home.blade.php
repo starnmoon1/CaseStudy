@@ -270,8 +270,9 @@
                                         <img src="{{asset('storage/images/'.$product->image)}}" alt="">
                                     </div>
                                     <div class="product-body">
-                                        <p class="product-category">{{$product->description}}</p>
+
                                         <h3 class="product-name"><a href="#" tabindex="0">{{$product->name}}</a></h3>
+                                        <p class="product-category">{{$product->description}}</p>
                                         <h4 class="product-price">{{$product->price}}</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
@@ -287,7 +288,7 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn" tabindex="0"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                        <a class="add-to-cart-btn" tabindex="0" href="{{route('addToCart',$product->id)}}"><i class="fa fa-shopping-cart"></i> add to cart</a>
                                     </div>
                                 </div>
                                 @endforeach

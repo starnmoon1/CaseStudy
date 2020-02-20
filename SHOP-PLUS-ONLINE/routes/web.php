@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/','UserController@store')->name('user.store');
+//Route::post('/','UserController@store')->name('user.store');
+Route::get('cart','CartController@index');
+Route::get('add-to-cart/{id}','CartController@addToCart')->name('addToCart');
 
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
@@ -14,7 +16,7 @@ Route::middleware('CheckLogin')->prefix('users')->group(function (){
 });
 
 
-Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
+Route::get('/','HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search')->name('product.search');
 
 Route::prefix('admin')->group(function () {
