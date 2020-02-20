@@ -10,6 +10,8 @@ Route::get('add-to-cart/{id}','CartController@addToCart')->name('addToCart');
 Route::patch('update-cart', 'CartController@update');
 
 Route::delete('remove-from-cart', 'CartController@remove');
+Route::post('/checkout/{total}/{quantity}', 'CartController@postCheckOut')->name('postCheckout'); //done
+
 
 //Route::post('/','UserController@store')->name('user.store');
 

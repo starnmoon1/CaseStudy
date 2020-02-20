@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Bill;
 use App\Category;
+use App\Customer;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,7 @@ class CartController extends Controller
         return view('products.cart', compact('categories'));
 
     }
+
 
     public function addToCart($id)
     {
@@ -88,6 +91,30 @@ class CartController extends Controller
 
             session()->flash('success', 'Product removed successfully');
         }
+    }
+
+    public function postCheckOut(Request $request, $total,$quantity) {
+        $customer = new Customer();
+        $customer->fill($request->all());
+        $customer->save();
+
+        $bill = new Bill();
+        $bill->customer_id = $customer->id;
+        $bill->date_order = date('Y-m-d H:i:s');
+        $bill->total = $total;
+        $bill->note = $request->note;
+        $bill->save();
+
+        foreach(session('cart') as $id => $details)
+        {
+            $billDetail = new BillDetail;
+            $billDetail->bill_id = $bill->id;
+            $billDetail->product_id = $details->id;
+            $billDetail->quantily = $details->qty;
+            $billDetail->price = $details->price;
+            $billDetail->save();
+        }
+
     }
 
 
