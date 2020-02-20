@@ -1,6 +1,5 @@
 @extends('default')
 @section('content')
-<<<<<<< HEAD
     @foreach($products as $product)
     <div class="col-md-3 col-xs-3">
         <div class="product">
@@ -36,7 +35,6 @@
         </div>
     </div>
     @endforeach
-=======
     <div id="aside" class="col-md-9">
 
         <div class="col-md-4 col-xs-6">
@@ -301,37 +299,7 @@
 
 
 
-                                @foreach($products as $product)
-                                <div class="product slick-slide slick-current slick-active" data-slick-index="4" aria-hidden="false" tabindex="0" style="width: 263px;">
-                                    <a href="{{route('product.detail', $product->id)}}">
-                                    <div class="product-img">
 
-                                        <img src="{{asset('storage/images/'.$product->image)}}" alt="">
-
-                                    </div>
-                                    </a>
-                                    <div class="product-body">
-                                        <p class="product-category">{{$product->description}}</p>
-                                        <h3 class="product-name"><a href="#" tabindex="0">{{$product->name}}</a></h3>
-                                        <h4 class="product-price">{{$product->price}}</h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist" tabindex="0"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare" tabindex="0"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view" tabindex="0"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn" tabindex="0"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
-                                </div>
-                                @endforeach
 
                                 {{--end san pham--}}
                             </div>
@@ -343,7 +311,6 @@
             </div>
         </div>
     </div>
->>>>>>> ffb29a07a351a3350066343a9440c233d3f65d74
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="{{asset('js/ajax.js')}}"></script>

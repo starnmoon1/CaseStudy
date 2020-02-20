@@ -59,15 +59,10 @@ class ProductController extends Controller
         return redirect()->route('product.list');
     }
 
-<<<<<<< HEAD
-    public function error() {
-        return view('error.404');
-=======
     public function getByCategory($id)
     {
         $products = Category::find($id)->products->all();
         return redirect(route('home',compact('products')));
->>>>>>> ffb29a07a351a3350066343a9440c233d3f65d74
     }
 
 

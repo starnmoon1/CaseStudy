@@ -10,16 +10,15 @@
                 @endif
             </ul>
             <ul class="header-links pull-right">
+                @if(\Illuminate\Support\Facades\Auth::user())
+                <a href="{{route('logout')}}">
+                    <i class="fa fa-sign-in"></i>
+                </a>
+                @endif
                 <li><a href="{{route('login')}}">Login</a></li>
                 <li><a href="{{route('register')}}">Register</a></li>
 
 
-                <li><a href="{{route('logout')}}">Logout</a></li>
-
-
-                <a href="{{route('logout')}}">
-                    <i class="fa fa-sign-in"></i>
-                </a>
             </ul>
 
         </div>
