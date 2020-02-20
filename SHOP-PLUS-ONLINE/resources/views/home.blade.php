@@ -1,5 +1,40 @@
 @extends('default')
 @section('content')
+    @foreach($products as $product)
+    <div class="col-md-3 col-xs-3">
+        <div class="product">
+            <div class="product-img">
+                <a href="{{route('product.detail', $product->id)}}">
+                <img src="{{$product->image}}" width="263px" height="263px">
+                </a>
+                <div class="product-label">
+                    <span class="sale">-30%</span>
+                    <span class="new">NEW</span>
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-category">{{$product->description}}</p>
+                <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
+                <h4 class="product-price">${{$product->price}} <del class="product-old-price">$990.00</del></h4>
+                <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-btns">
+                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                </div>
+            </div>
+            <div class="add-to-cart">
+                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+            </div>
+        </div>
+    </div>
+    @endforeach
     <div id="aside" class="col-md-9">
 
         <div class="col-md-4 col-xs-6">
@@ -39,15 +74,15 @@
         </div>
     </div>
 
+{{--    List products--}}
     <div class="col-md-9">
         <div class="section-title">
             <h3 class="title">New Products</h3>
             <div class="section-nav">
                 <ul class="section-tab-nav tab-nav">
-                    <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-                    <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-                    <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-                    <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+                    @foreach($categories as $category)
+                    <li class="active"><a data-toggle="tab" href="#">{{$category->name}}</a></li>
+                        @endforeach
                 </ul>
             </div>
         </div>
@@ -261,9 +296,6 @@
                                 </div>
 
 
-
-
-
                                 @foreach($products as $product)
                                 <div class="product slick-slide slick-current slick-active" data-slick-index="4" aria-hidden="false" tabindex="0" style="width: 263px;">
                                     <div class="product-img">
@@ -292,7 +324,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-
                                 {{--end san pham--}}
                             </div>
                         </div>
@@ -304,3 +335,5 @@
         </div>
     </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{asset('js/ajax.js')}}"></script>

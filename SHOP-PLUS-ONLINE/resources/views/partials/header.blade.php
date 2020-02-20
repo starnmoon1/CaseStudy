@@ -3,13 +3,21 @@
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                @if(\Illuminate\Support\Facades\Auth::user())
+                <li><a href="#"><i class="fa fa-phone"></i>{{\Illuminate\Support\Facades\Auth::user()->phone}}</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> {{\Illuminate\Support\Facades\Auth::user()->email}}</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> {{\Illuminate\Support\Facades\Auth::user()->name}}</a></li>
+                @endif
             </ul>
             <ul class="header-links pull-right">
+                @if(\Illuminate\Support\Facades\Auth::user())
+                <a href="{{route('logout')}}">
+                    <i class="fa fa-sign-in"></i>
+                </a>
+                @endif
                 <li><a href="{{route('login')}}">Login</a></li>
                 <li><a href="{{route('register')}}">Register</a></li>
+
 
             </ul>
 
@@ -38,15 +46,11 @@
                     <div class="header-search">
                         <form method="get" action="{{route('product.search')}}">
                             @csrf
-                            <select class="input-select">
-                                <option value="0">All Categories</option>
-                                @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                            </select>
-                            <input class="input" placeholder="Search here" name="keyword">
-                            <button class="search-btn" type="submit">Search</button>
+
+                            <input class="input" id="#search-product" placeholder="Search here" name="keyword">
+                            <button class="search-btn">Search</button>
                         </form>
+
                     </div>
                 </div>
                 <!-- /SEARCH BAR -->
@@ -58,7 +62,9 @@
                         <div>
                             <a href="#">
                                 <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
+                                <span>Channel Page</span>
+
+
                                 <div class="qty">2</div>
                             </a>
                         </div>

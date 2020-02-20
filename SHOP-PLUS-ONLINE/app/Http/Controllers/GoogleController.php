@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use Socialite;
-use Auth;
+
 use App\User;
 use Exception;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
-class SocialController extends Controller
+class GoogleController extends Controller
 {
-    protected $redirectTo = '/';
+    use AuthenticatesUsers;
 
     public function __construct()
     {
@@ -33,13 +35,12 @@ class SocialController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect('/');
+                return redirect('/home');
 
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'phone' => $user->phone,
                     'google_id'=> $user->id
                 ]);
 
