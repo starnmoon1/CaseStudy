@@ -22,8 +22,9 @@ class ProductController extends Controller
         return view('products.admin.list', compact('products'));
     }
 
-    public function detail() {
-        return view('products.detail');
+    public function detail($id) {
+       $product = $this->productService->findById($id);
+        return view('products.detail', compact('product'));
     }
 
     public function create() {

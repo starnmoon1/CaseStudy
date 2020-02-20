@@ -327,12 +327,13 @@
 
                                     <!-- /Comment -->
                                     <div class="col-md-9">
-                                        <form action="{{route('comment')}}">
+                                        <form method="post" action="{{route('comment')}}">
+                                            @csrf
                                         <div id="reviews">
                                             <ul class="reviews">
                                                 <li>
                                                     <div class="review-heading">
-                                                        <h5 class="name">John</h5>
+                                                        <h5 class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
                                                         <p class="date">27 DEC 2018, 8:0 PM</p>
                                                         <div class="review-rating">
                                                             <i class="fa fa-star"></i>
@@ -347,8 +348,8 @@
                                                     <div class="review-body">
                                                         <div>
 
-                                                                <textarea id="subject" name="comnent_user" placeholder="Write something.."></textarea>
-                                                                <button type="submit" href="{{route('product.detail')}}" class="btn btn-success">Post</button>
+                                                                <textarea id="subject" name="comment_user" placeholder="Write something.."></textarea>
+                                                                <button type="submit" class="btn btn-success">Post</button>
                                                                 <button type="reset" class="btn btn-secondary">Cancel</button>
 
                                                         </div>
@@ -356,6 +357,22 @@
                                                 </li>
                                                 </li>
                                             </ul>
+                                            <div>
+
+                                                @foreach($comments = $comments = \App\Product::find('1')->comments as $comment)
+                                                    <ul>
+                                                        <li>
+                                                            {{$comment->user->name}}
+                                                            <br>
+                                                            <span>{{date('d/m/Y H:i ', strtotime($comment->created_at))}}</span>
+                                                        </li>
+                                                        <li>
+                                                            {{$comment->comment_user}}
+                                                        </li>
+                                                    </ul>
+
+                                                    @endforeach
+                                            </div>
                                             <ul class="reviews-pagination">
                                                 <li class="active">1</li>
                                                 <li><a href="#">2</a></li>
