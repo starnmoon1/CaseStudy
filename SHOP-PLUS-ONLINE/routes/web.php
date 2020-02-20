@@ -14,7 +14,7 @@ Route::middleware('CheckLogin')->prefix('users')->group(function (){
 });
 
 //route cua hoan khong xoa
-Route::get('/','HomeController@index')->name('home');
+Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 
 Route::prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
