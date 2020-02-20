@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     public function getByCategory($id)
     {
-        $products = Category::find($id)->products->all();
+        //$products = Category::find($id)->products->all();
         return redirect(route('home',compact('products')));
     }
 

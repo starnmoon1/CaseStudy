@@ -58,6 +58,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+Route::get('product/detail/{id}', 'ProductController@detail')->name('product.detail'); //done
 Route::get('/error', 'ProductController@error')->name('product.error'); //done
 
 //done...
@@ -68,7 +69,7 @@ Route::post('import', 'ExportController@import')->name('import');
 //comment
 Route::post('/comment', 'UserController@postComment')->name('comment');
 //nhanh anh thang
+Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');
 Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
 
-Route::get('product/detail/{id}', 'ProductController@detail')->name('product.detail');
-Route::post('/product/detail/{id}', 'CommentController@postComments')->name('comment');
+Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');

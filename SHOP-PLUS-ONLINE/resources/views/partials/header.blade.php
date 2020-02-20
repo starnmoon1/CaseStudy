@@ -15,7 +15,7 @@
                     <i class="fa fa-sign-in"></i>
                 </a>
                 @endif
-                <li><a href="{{route('login')}}">Login</a></li>
+                <li><a href="">Login</a></li>
                 <li><a href="{{route('register')}}">Register</a></li>
 
 
@@ -46,12 +46,7 @@
                     <div class="header-search">
                         <form method="get" action="{{route('product.search')}}">
                             @csrf
-                            <select class="input-select">
-                                <option value="0">All Categories</option>
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                            </select>
+
                             <input class="input" id="#search-product" placeholder="Search here" name="keyword">
                             <button class="search-btn">Search</button>
                         </form>
