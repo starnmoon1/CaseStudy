@@ -50,6 +50,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('product/detail/{id}', 'ProductController@detail')->name('product.detail'); //done
+Route::get('/error', 'ProductController@error')->name('product.error'); //done
 
 //done...
 Route::get('export', 'ExportController@export')->name('export');

@@ -53,6 +53,10 @@ class ProductController extends Controller
         return redirect()->route('product.list');
     }
 
+    public function error() {
+        return view('error.404');
+    }
+
 
     public function checkout()
     {

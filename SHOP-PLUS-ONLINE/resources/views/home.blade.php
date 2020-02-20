@@ -4,7 +4,9 @@
     <div class="col-md-3 col-xs-3">
         <div class="product">
             <div class="product-img">
-                <img src="./img/product01.png" alt="">
+                <a href="{{route('product.detail', $product->id)}}">
+                <img src="{{$product->image}}" width="263px" height="263px">
+                </a>
                 <div class="product-label">
                     <span class="sale">-30%</span>
                     <span class="new">NEW</span>
