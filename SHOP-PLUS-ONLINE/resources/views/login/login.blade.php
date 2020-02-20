@@ -24,7 +24,8 @@
                 </div>
                 <div class="pom-agile">
                     <input placeholder="Password" name="password" class="pass" type="password" required="">
-                    <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+                    <span class="icon2"><i class="fas fa-eye" aria-hidden="true"></i></span>
+                    {{--con mat--}}
                 </div>
                 <div class="sub-w3l login">
                     <div class="right-w3l">
@@ -48,5 +49,10 @@
         <p><a href="{{route('home')}}">Shop Plus+</a></p>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/92c99bd371.js" crossorigin="anonymous"></script>
+<script src="{{asset('js/login_register.js')}}"></script>
+
 </body>
 </html>

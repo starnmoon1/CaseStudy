@@ -11,5 +11,5 @@ interface RepoInterface
     public function update($obj);
     public function delete($id);
     public function findById($id);
-    public function search($id);
+    public function search($keyword);
 }
