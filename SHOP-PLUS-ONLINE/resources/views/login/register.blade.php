@@ -22,13 +22,24 @@
                 <div class="pom-agile">
                     <input placeholder="Enter your name" name="name"  class="pass" type="text" required="">
                     <span class="icon2"><i class="fa fa-user" aria-hidden="true"></i></span>
+
                 </div>
+                @if($errors->has('name'))
+                    <div class="error-text">
+                        {{$errors->first('name')}}
+                    </div>
+                @endif
 
                 <div class="pom-agile">
                     <input placeholder="Enter your email" name="email" class="pass" type="text" required="">
                     <span class="icon2">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
+                    @if($errors->has('email'))
+                        <div class="error-text">
+                            {{$errors->first('email')}}
+                        </div>
+                    @endif
                 </div>
 
                 <div class="pom-agile">
@@ -36,12 +47,22 @@
                     <span class="icon2">
                         <i class="fas fa-phone-square"></i>
                     </span>
+                    @if($errors->has('phone'))
+                        <div class="error-text">
+                            {{$errors->first('phone')}}
+                        </div>
+                    @endif
                 </div>
 
                 <div class="pom-agile">
                     <input placeholder="Password" name="password" class="pass" type="password" required="">
                     <span class="icon2"><i class="fas fa-eye" aria-hidden="true"></i></span>
                 </div>
+                @if($errors->has('password'))
+                    <div class="error-text">
+                        {{$errors->first('password')}}
+                    </div>
+                @endif
                 <div class="sub-w3l login">
                     <div class="right-w3l">
                         <input type="submit" value="Register">

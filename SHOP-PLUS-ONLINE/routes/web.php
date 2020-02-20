@@ -4,15 +4,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/','UserController@store')->name('user.store');
 
-Route::get('/login','LoginController@formLogin')->name('login');
+Route::get('/login/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
-//thang
+
+Route::post('/login/logout','LoginController@login')->name('postLogin');
+Route::get('/login','LoginController@logout')->name('logout');
 Route::post('/login','LoginController@login')->name('postLogin');
 Route::get('/logout','LoginController@logout')->name('logout');
 Route::middleware('CheckLogin')->prefix('users')->group(function (){
     Route::get('home', 'UserController@index')->name('login.home');
 });
 
+//route cua hoan khong xoa
+Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 
 //route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
@@ -49,6 +53,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', 'ProductController@delete')->name('product.delete'); //done
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
+        Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');
+
+
+//        Route::get('/detail', 'ProductController@detail')->name('product.detail'); //done
 
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
         Route::get('/cart', 'ProductController@formCart')->name('product.cart');
@@ -73,4 +81,6 @@ Route::get('/google/callback', 'SocialController@handleGoogleCallback');
 
 
 //nhanh anh thang
-Route::post('/comment', 'UserController@postComment')->name('comment');
+Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');
+Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
+

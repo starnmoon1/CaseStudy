@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Services\Users\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -17,7 +17,7 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function store(UserRequest $request)
+    public function store(RegisterRequest $request)
     {
         $this->userService->create($request);
         return redirect()->route('login');

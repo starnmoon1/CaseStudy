@@ -39,15 +39,15 @@
         </div>
     </div>
 
+{{--    List products--}}
     <div class="col-md-9">
         <div class="section-title">
             <h3 class="title">New Products</h3>
             <div class="section-nav">
                 <ul class="section-tab-nav tab-nav">
-                    <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-                    <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-                    <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-                    <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+                    @foreach($categories as $category)
+                    <li class="active"><a data-toggle="tab" href="#">{{$category->name}}</a></li>
+                        @endforeach
                 </ul>
             </div>
         </div>
