@@ -27,7 +27,7 @@
         <div id="collapseTwo-a" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('export') }}">Export excel</a>
-                <a class="collapse-item" href="">Import excel</a>
+                <a class="collapse-item" href="{{ route('importExportView') }}">Import excel</a>
             </div>
         </div>
     </li>

@@ -1,15 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use Socialite;
-use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
 
 class SocialController extends Controller
 {
+    use AuthenticatesUsers;
+
+
     protected $redirectTo = '/';
+
 
     public function __construct()
     {
@@ -39,13 +44,12 @@ class SocialController extends Controller
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'phone' => $user->phone,
                     'google_id'=> $user->id
                 ]);
 
                 Auth::login($newUser);
 
-                return redirect()->back();
+                return redirect()->back('/register  ');
             }
 
         } catch (Exception $e) {
