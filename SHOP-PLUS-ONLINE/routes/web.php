@@ -19,7 +19,7 @@ Route::get('/search', 'HomeController@search')->name('product.search');
 
 Route::prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
-        Route::get('/', 'UserController@index')->name('user.index'); //done
+        Route::get('/', 'UserController@index')->name('user.index')->middleware('CheckLogin'); //done
         Route::get('/create', 'UserController@create')->name('user.create'); //done
         Route::post('/create', 'UserController@store')->name('user.store'); //done
         Route::get('/delete/{id}', 'UserController@destroy')->name('user.destroy'); //done
@@ -45,16 +45,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
 
-        Route::get('/detail', 'ProductController@detail')->name('product.detail'); //done
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
         Route::get('/cart', 'ProductController@formCart')->name('product.cart');
+        Route::get('detail', 'ProductController@detail')->name('product.detail'); //done
     });
 });
 
 //import and export nhom hoan
 //->name('formImport'); check middleware
 Route::get('export', 'ExportController@export')->name('export');
-Route::get('importExportView', 'ExportController@importExportView');
+Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
 
 
@@ -62,8 +62,8 @@ Route::post('import', 'ExportController@import')->name('import');
 Route::get('google', function () {
     return view('googleAuth');
 });
-Route::get('auth/google', 'SocialController@redirectToGoogle');
-Route::get('auth/google/callback', 'SocialController@handleGoogleCallback');
+Route::get('/google', 'SocialController@redirectToGoogle');
+Route::get('/google/callback', 'SocialController@handleGoogleCallback');
 
 
 
