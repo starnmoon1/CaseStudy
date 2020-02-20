@@ -15,7 +15,7 @@
                     <i class="fa fa-sign-in"></i>
                 </a>
                 @endif
-                <li><a href="">Login</a></li>
+                <li><a href="{{route('login')}}">Login</a></li>
                 <li><a href="{{route('register')}}">Register</a></li>
 
 
