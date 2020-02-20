@@ -2,7 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/','UserController@store')->name('user.store');
+//long
+
+Route::get('cart','CartController@index');
+Route::get('add-to-cart/{id}','CartController@addToCart')->name('addToCart');
+
+Route::patch('update-cart', 'CartController@update');
+
+Route::delete('remove-from-cart', 'CartController@remove');
+Route::post('/checkout/{total}/{quantity}', 'CartController@postCheckOut')->name('postCheckout'); //done
+
+
+//Route::post('/','UserController@store')->name('user.store');
+
 
 Route::get('/login/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
@@ -18,7 +30,7 @@ Route::middleware('CheckLogin')->prefix('users')->group(function (){
 //route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 
-Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
+Route::get('/','HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search')->name('product.search');
 
 Route::prefix('admin')->group(function () {

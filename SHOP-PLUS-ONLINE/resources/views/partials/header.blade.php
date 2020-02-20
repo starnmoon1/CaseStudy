@@ -71,39 +71,40 @@
                         <!-- /Wishlist -->
 
                         <!-- Cart -->
+                        @if(session('cart'))
                         <div class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <?php $total = 0; $quantity = 0 ?>
+                                @foreach((array) session('cart') as $id => $details)
+                                    <?php $total += $details['price'] * $details['quantity'];
+                                            $quantity += $details['quantity']                                    ?>
+                                @endforeach
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Your Cart</span>
-                                <div class="qty">3</div>
+                                <div class="qty">{{$quantity }}</div>
                             </a>
                             <div class="cart-dropdown">
                                 <div class="cart-list">
+                                    @if(session('cart'))
+                                        @foreach(session('cart') as $id => $details)
                                     <div class="product-widget">
                                         <div class="product-img">
                                             <img src="./img/product01.png" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                            <h3 class="product-name"><a href="#">{{ $details['name'] }}</a></h3>
+                                            <h4 class="product-price"><span class="qty">{{ $details['quantity'] }}x</span>
+                                                ${{ number_format($details['price']) }}</h4>
                                         </div>
                                         <button class="delete"><i class="fa fa-close"></i></button>
                                     </div>
+                                        @endforeach
+                                    @endif
 
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
                                 </div>
                                 <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
+                                    <small>{{$quantity}} Item(s) selected</small>
+                                    <h5>SUBTOTAL: ${{number_format($total)}}</h5>
                                 </div>
                                 <div class="cart-btns">
                                     <a href="{{route('product.cart')}}">View Cart</a>
@@ -111,6 +112,7 @@
                                 </div>
                             </div>
                         </div>
+                    @endif
                         <!-- /Cart -->
 
                         <!-- Menu Toogle -->

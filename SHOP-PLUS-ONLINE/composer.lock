@@ -756,6 +756,7 @@
                 "laravel"
             ],
             "time": "2020-02-18T15:17:52+00:00"
+
         },
         {
             "name": "laravel/socialite",

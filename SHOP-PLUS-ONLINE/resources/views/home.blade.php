@@ -296,11 +296,34 @@
                                 </div>
 
 
+                                @foreach($products as $product)
+                                <div class="product slick-slide slick-current slick-active" data-slick-index="4" aria-hidden="false" tabindex="0" style="width: 263px;">
+                                    <div class="product-img">
+                                        <img src="{{asset('storage/images/'.$product->image)}}" alt="">
+                                    </div>
+                                    <div class="product-body">
 
-
-
-
-
+                                        <h3 class="product-name"><a href="#" tabindex="0">{{$product->name}}</a></h3>
+                                        <p class="product-category">{{$product->description}}</p>
+                                        <h4 class="product-price">{{$product->price}}</h4>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-btns">
+                                            <button class="add-to-wishlist" tabindex="0"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                            <button class="add-to-compare" tabindex="0"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                            <button class="quick-view" tabindex="0"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <a class="add-to-cart-btn" tabindex="0" href="{{route('addToCart',$product->id)}}"><i class="fa fa-shopping-cart"></i> add to cart</a>
+                                    </div>
+                                </div>
+                                @endforeach
                                 {{--end san pham--}}
                             </div>
                         </div>
