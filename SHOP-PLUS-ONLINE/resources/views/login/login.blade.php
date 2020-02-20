@@ -20,11 +20,13 @@
                 @csrf
                 <div class="pom-agile">
                     <input placeholder="E-mail" name="email" class="user" type="email" required="">
+                    <input placeholder="E-mail" name="email" class="user" type="text" required="">
                     <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                 </div>
                 <div class="pom-agile">
                     <input placeholder="Password" name="password" class="pass" type="password" required="">
                     <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+                    <span class="icon2"><i class="fas fa-eye" aria-hidden="true"></i></span>
                 </div>
                 <div class="sub-w3l login">
                     <div class="right-w3l">
@@ -45,8 +47,13 @@
         </div>
     </div>
     <div class="footer">
-        <p><a href="{{route('home')}}">Shop Plus+</a></p>
+        <span><p><a href="{{route('home')}}">Shop Plus+</a></p></span>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/92c99bd371.js" crossorigin="anonymous"></script>
+<script src="{{asset('js/login_register.js')}}"></script>
+
 </body>
 </html>

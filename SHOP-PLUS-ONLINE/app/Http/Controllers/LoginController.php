@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,9 @@ class LoginController extends Controller
         ];
         if(Auth::attempt($data))
         {
+            if(\Illuminate\Support\Facades\Auth::user()->role == RoleConstant::ADMIN) {
+                return redirect()->route('user.index');
+            }
             return redirect()->route('home');
         }
         return back();

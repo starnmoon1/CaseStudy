@@ -6,6 +6,7 @@ namespace App\Http\Services\Products;
 
 use App\Http\Repositories\Products\ProductRepoInterface;
 use App\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductService implements ProductServiceInterface
 {
@@ -35,14 +36,19 @@ class ProductService implements ProductServiceInterface
             $image = $request->product_image;
             $image_name = date('Y-m-d H:i:s').'_'.$image->getClientOriginalName();
             $product->image = $image_name;
-            $request->product_image->storeAs('public/images', $image_name);
+            $request->product_image->storeAs('public/images/', $image_name);
         }
         $this->productRepo->store($product);
     }
 
-    public function delete($obj)
+    public function delete($id)
     {
-        $this->productRepo->delete($obj);
+        $product = $this->productRepo->findById($id);
+        $name_image = $product->image;
+        if($name_image) {
+            Storage::delete('public/images/'.$name_image);
+        }
+        $this->productRepo->delete($product);
     }
 
     public function update($request, $id)
@@ -56,7 +62,7 @@ class ProductService implements ProductServiceInterface
         $name_image = $product->image;
         if ($request->hasFile('product_image')) {
             if($name_image) {
-                Storage::delete('public/images/'. $name_image);
+                Storage::delete('public/images/'.$name_image);
             }
             $image = $request->product_image;
             $image_name = date('Y-m-d H:i:s').'_'.$image->getClientOriginalName();
@@ -70,9 +76,9 @@ class ProductService implements ProductServiceInterface
 
     }
 
-    public function search($keyword)
+    public function search($request)
     {
-        // TODO: Implement search() method.
+        return $this->productRepo->search($request->keyword);
     }
 
     public function findById($id)

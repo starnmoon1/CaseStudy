@@ -21,6 +21,7 @@ class CommentController extends Controller
         $this->comment = $comment;
     }
 
+
     public function postComments(Request $request, $id)
     {
         $product =Product::find($id);
@@ -31,5 +32,23 @@ class CommentController extends Controller
         $comment->save();
         return redirect("product/detail/".$product->name."html");
 
+    }
+
+    public function postComments(Request $request)
+    {
+        $product =Product::find('6');
+        $comment = new Comment();
+        $comment->comment_user = $request->comment_user;
+        $comment->productId = '6';
+        $comment->user_id = Auth::user()->id;
+        $comment->save();
+        return back();
+
+    }
+
+    public function getComments()
+    {
+        $comments = Comment::all();
+        return view('admin.product.detail', compact('comments'));
     }
 }
