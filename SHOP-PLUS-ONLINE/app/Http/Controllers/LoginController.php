@@ -27,8 +27,12 @@ class LoginController extends Controller
         ];
         if(Auth::attempt($data))
         {
-            return redirect()->route('product.list');
+            if(\Illuminate\Support\Facades\Auth::user()->role == RoleConstant::ADMIN) {
+                return redirect()->route('user.index');
+            }
+            return redirect()->route('home');
         }
+
         return back();
     }
 
