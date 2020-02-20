@@ -53,11 +53,7 @@ class ProductController extends Controller
         return redirect()->route('product.list');
     }
 
-    public function search(Request $request)
-    {
-        $products = $this->productService->search($request);
-        return view('product.list', compact('products'));
-    }
+
 
     public function checkout()
     {
