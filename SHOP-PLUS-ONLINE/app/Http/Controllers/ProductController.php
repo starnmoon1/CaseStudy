@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Comment;
 use App\Http\Services\Categories\CategoryServiceInterface;
 use App\Http\Services\Products\ProductServiceInterface;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,8 +26,10 @@ class ProductController extends Controller
     }
 
     public function detail($id) {
-       $product = $this->productService->findById($id);
-        return view('products.detail', compact('product'));
+        $comments = Comment::all();
+        $categories = $this->categoryService->getAll();
+        $product= Product::find($id);
+        return view('products.detail', compact(['product', 'categories','comments']));
     }
 
     public function create() {
@@ -54,11 +59,13 @@ class ProductController extends Controller
         return redirect()->route('product.list');
     }
 
-    public function search(Request $request)
+    public function getByCategory($id)
     {
-        $products = $this->productService->search($request);
-        return view('product.list', compact('products'));
+        $products = Category::find($id)->products->all();
+        return redirect(route('home',compact('products')));
     }
+
+
 
     public function checkout()
     {

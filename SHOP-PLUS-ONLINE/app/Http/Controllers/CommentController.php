@@ -23,10 +23,10 @@ class CommentController extends Controller
 
     public function postComments(Request $request)
     {
-        $product =Product::find('1');
+        $product =Product::find('6');
         $comment = new Comment();
         $comment->comment_user = $request->comment_user;
-        $comment->productId = '1';
+        $comment->productId = '6';
         $comment->user_id = Auth::user()->id;
         $comment->save();
         return back();

@@ -359,7 +359,7 @@
                                             </ul>
                                             <div>
 
-                                                @foreach($comments = $comments = \App\Product::find('1')->comments as $comment)
+                                                @foreach($comments as $comment)
                                                     <ul>
                                                         <li>
                                                             {{$comment->user->name}}

@@ -76,9 +76,9 @@ class ProductService implements ProductServiceInterface
 
     }
 
-    public function search($keyword)
+    public function search($request)
     {
-        // TODO: Implement search() method.
+        return $this->productRepo->search($request->keyword);
     }
 
     public function findById($id)

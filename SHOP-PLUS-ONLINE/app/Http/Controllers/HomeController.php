@@ -18,6 +18,17 @@ class HomeController extends Controller
 
     public function index() {
         $products = $this->productService->getAll();
-        return view('home', compact('products'));
+        $categories = $this->categoryService->getAll();
+        return view('home', compact(['products','categories']));
     }
+
+    public function search(Request $request)
+    {
+        $categories = $this->categoryService->getAll();
+        $products = $this->productService->search($request);
+        return view('home', compact(['products','categories']));
+    }
+
+
+
 }
