@@ -10,7 +10,9 @@
             <ul class="header-links pull-right">
                 <li><a href="{{route('login')}}">Login</a></li>
                 <li><a href="{{route('register')}}">Register</a></li>
+
             </ul>
+
         </div>
     </div>
     <!-- /TOP HEADER -->
@@ -34,14 +36,16 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
+                        <form method="get" action="{{route('product.search')}}">
+                            @csrf
                             <select class="input-select">
                                 <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
                             </select>
-                            <input class="input" placeholder="Search here">
-                            <button class="search-btn">Search</button>
+                            <input class="input" placeholder="Search here" name="keyword">
+                            <button class="search-btn" type="submit">Search</button>
                         </form>
                     </div>
                 </div>

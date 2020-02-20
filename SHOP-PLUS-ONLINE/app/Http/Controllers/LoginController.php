@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,7 @@ class LoginController extends Controller
         ];
         if(Auth::attempt($data))
         {
-            return redirect()->route('home');
+            return redirect()->route('product.list');
         }
         return back();
     }

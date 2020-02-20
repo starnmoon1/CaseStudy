@@ -30,11 +30,6 @@ class ProductRepo implements ProductRepoInterface
         $obj->save();
     }
 
-    public function search($keyword)
-    {
-        // TODO: Implement search() method.
-    }
-
     public function store($obj)
     {
        $obj->save();
@@ -43,5 +38,10 @@ class ProductRepo implements ProductRepoInterface
     public function findById($id)
     {
         return $this->product->findOrFail($id);
+    }
+
+    public function search($keyword)
+    {
+        return $this->product->where('name', 'like', '%'.$keyword.'%')->get();
     }
 }

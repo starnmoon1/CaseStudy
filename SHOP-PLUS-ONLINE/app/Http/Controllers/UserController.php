@@ -6,6 +6,7 @@ use App\Comment;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\Users\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -24,6 +25,9 @@ class UserController extends Controller
 
     public function index()
     {
+        if (!Gate::allows('crud-user')) {
+            abort(403);
+        }
         $users = $this->userService->getAll();
         return view('users.admin.list', compact('users'));
     }
