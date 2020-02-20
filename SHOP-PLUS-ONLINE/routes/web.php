@@ -18,7 +18,7 @@ Route::middleware('CheckLogin')->prefix('users')->group(function (){
 //route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 
-Route::get('/','HomeController@index')->name('home');
+Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 Route::get('/search', 'HomeController@search')->name('product.search');
 
 Route::prefix('admin')->group(function () {
@@ -48,34 +48,33 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', 'ProductController@delete')->name('product.delete'); //done
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
-<<<<<<< HEAD
-=======
-
+        Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');
 
 
 //        Route::get('/detail', 'ProductController@detail')->name('product.detail'); //done
 
->>>>>>> ffb29a07a351a3350066343a9440c233d3f65d74
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
         Route::get('/cart', 'ProductController@formCart')->name('product.cart');
+        Route::get('detail', 'ProductController@detail')->name('product.detail'); //done
     });
 });
 
-Route::get('product/detail/{id}', 'ProductController@detail')->name('product.detail'); //done
-Route::get('/error', 'ProductController@error')->name('product.error'); //done
-
-//done...
+//import and export nhom hoan
+//->name('formImport'); check middleware
 Route::get('export', 'ExportController@export')->name('export');
 Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
 
-<<<<<<< HEAD
-//comment
-Route::post('/comment', 'UserController@postComment')->name('comment');
-=======
+
+//login google
+Route::get('google', function () {
+    return view('googleAuth');
+});
+Route::get('/google', 'SocialController@redirectToGoogle');
+Route::get('/google/callback', 'SocialController@handleGoogleCallback');
+
+
+
 //nhanh anh thang
 Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');
 Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
-
-Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');
->>>>>>> ffb29a07a351a3350066343a9440c233d3f65d74
