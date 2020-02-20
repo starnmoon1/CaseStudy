@@ -21,6 +21,19 @@ class CommentController extends Controller
         $this->comment = $comment;
     }
 
+
+    public function postComments(Request $request, $id)
+    {
+        $product =Product::find($id);
+        $comment = new Comment();
+        $comment->comment_user = $request->comment_user;
+        $comment->productId = $id;
+        $comment->user_id = Auth::user()->id;
+        $comment->save();
+        return redirect("product/detail/".$product->name."html");
+
+    }
+
     public function postComments(Request $request)
     {
         $product =Product::find('6');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\UserRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Services\Users\UserService;
 use Illuminate\Http\Request;

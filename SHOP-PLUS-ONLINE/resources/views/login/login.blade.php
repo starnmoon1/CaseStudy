@@ -19,13 +19,14 @@
             <form action="{{route('postLogin')}}" method="post">
                 @csrf
                 <div class="pom-agile">
+                    <input placeholder="E-mail" name="email" class="user" type="email" required="">
                     <input placeholder="E-mail" name="email" class="user" type="text" required="">
                     <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                 </div>
                 <div class="pom-agile">
                     <input placeholder="Password" name="password" class="pass" type="password" required="">
+                    <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
                     <span class="icon2"><i class="fas fa-eye" aria-hidden="true"></i></span>
-                    {{--con mat--}}
                 </div>
                 <div class="sub-w3l login">
                     <div class="right-w3l">
