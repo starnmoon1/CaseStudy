@@ -29,7 +29,7 @@ class ProductController extends Controller
         $comments = Comment::all();
         $categories = $this->categoryService->getAll();
         $product= Product::find($id);
-        return view('products.detail', compact(['product', 'categories','comments']));
+        return view('products.detail', compact('product', 'categories','comments'));
     }
 
     public function create() {

@@ -266,9 +266,13 @@
 
                                 @foreach($products as $product)
                                 <div class="product slick-slide slick-current slick-active" data-slick-index="4" aria-hidden="false" tabindex="0" style="width: 263px;">
+                                    <a href="{{route('product.detail', $product->id)}}">
                                     <div class="product-img">
+
                                         <img src="{{asset('storage/images/'.$product->image)}}" alt="">
+
                                     </div>
+                                    </a>
                                     <div class="product-body">
                                         <p class="product-category">{{$product->description}}</p>
                                         <h3 class="product-name"><a href="#" tabindex="0">{{$product->name}}</a></h3>
