@@ -55,16 +55,19 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
         Route::get('/cart', 'ProductController@formCart')->name('product.cart');
-        Route::get('detail', 'ProductController@detail')->name('product.detail'); //done
     });
 });
 
-//import and export nhom hoan
-//->name('formImport'); check middleware
+Route::get('product/detail/{id}', 'ProductController@detail')->name('product.detail'); //done
+Route::get('/error', 'ProductController@error')->name('product.error'); //done
+
+//done...
 Route::get('export', 'ExportController@export')->name('export');
 Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
 
+//comment
+Route::post('/comment', 'UserController@postComment')->name('comment');
 //nhanh anh thang
 Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');
 Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');

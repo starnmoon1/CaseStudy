@@ -21,7 +21,7 @@ class AuthServiceProvider extends ServiceProvider
             if($user->role == RoleConstant::ADMIN) {
                 return true;
             }
-            return false;
+            return view('error.404');
         });
 
     }
