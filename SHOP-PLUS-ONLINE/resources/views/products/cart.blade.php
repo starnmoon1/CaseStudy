@@ -1,5 +1,28 @@
-@extends('master')
-@section('content')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/slick.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/nouislider.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+@include('partials.header')
+@include('partials.navbar')
     <div class="section">
         <!-- container -->
         <div class="container">
@@ -8,88 +31,68 @@
 
                 <div class="col-xs-7">
                     <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block">
-                                            <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
-                                </div>
-                                <div class="col-xs-4">
-                                    <h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="col-xs-6 text-right">
-                                        <h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <input type="text" class="form-control input-sm" value="1">
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <button type="button" class="btn btn-link btn-xs">
-                                            <span class="glyphicon glyphicon-trash"> </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
-                                </div>
-                                <div class="col-xs-4">
-                                    <h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="col-xs-6 text-right">
-                                        <h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <input type="text" class="form-control input-sm" value="1">
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <button type="button" class="btn btn-link btn-xs">
-                                            <span class="glyphicon glyphicon-trash"> </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="text-center">
-                                    <div class="col-xs-9">
-                                        <h6 class="text-right">Added items?</h6>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <button type="button" class="btn btn-default btn-sm btn-block">
-                                            Update cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <div class="row text-center">
-                                <div class="col-xs-9">
-                                    <h4 class="text-right">Total <strong>$50.00</strong></h4>
-                                </div>
-                                <div class="col-xs-3">
-                                    <a type="button" class="btn btn-success btn-block" href="{{route('product.checkout')}}">
-                                        Checkout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                            <tr>
+                                <th style="width:50%">Product</th>
+                                <th style="width:10%">Price</th>
+                                <th style="width:8%">Quantity</th>
+                                <th style="width:22%" class="text-center">Subtotal</th>
+                                <th style="width:10%"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <?php $total = 0 ?>
+
+                            @if(session('cart'))
+                                @foreach(session('cart') as $id => $details)
+
+                                    <?php $total += $details['price'] * $details['quantity'] ?>
+
+                                    <tr>
+                                        <td data-th="Product">
+                                            <div class="row">
+                                                <div class="col-sm-3 hidden-xs">
+
+{{--                                                    <img src="{{asset('storage/images/'.$details['image']) }}" width="100" height="100" class="img-responsive"/>--}}
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <h4 class="nomargin">{{ $details['name'] }}</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Price">${{ number_format($details['price']) }}</td>
+                                        <td data-th="Quantity">
+                                            <input type="number" value="{{ $details['quantity'] }}"
+                                                   class="form-control quantity"/>
+                                        </td>
+                                        <td data-th="Subtotal" class="text-center">
+                                            ${{ number_format($details['price'] * $details['quantity'] )}}</td>
+                                        <td class="actions" data-th="">
+                                            <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i
+                                                    class="fa fa-refresh"></i></button>
+                                            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}">
+                                                <i class="fa fa-trash-o"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            </tbody>
+                            <tfoot>
+                            <tr class="visible-xs">
+                                <td class="text-center"><strong>Total {{number_format( $total ) }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>
+                                        Continue Shopping</a></td>
+                                <td colspan="2" class="hidden-xs"></td>
+                                <td class="hidden-xs text-center"><strong>Total ${{ number_format($total) }}</strong>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
 
@@ -104,14 +107,13 @@
                             <div><strong>TOTAL</strong></div>
                         </div>
                         <div class="order-products">
+                            @foreach(session('cart') as $id => $details)
                             <div class="order-col">
-                                <div>1x Product Name Goes Here</div>
-                                <div>$980.00</div>
+                                <div>{{ $details['name'] }}</div>
+                                <div>${{ number_format($details['price']) }}</div>
                             </div>
-                            <div class="order-col">
-                                <div>2x Product Name Goes Here</div>
-                                <div>$980.00</div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div class="order-col">
                             <div>Shiping</div>
@@ -119,7 +121,7 @@
                         </div>
                         <div class="order-col">
                             <div><strong>TOTAL</strong></div>
-                            <div><strong class="order-total">$2940.00</strong></div>
+                            <div><strong class="order-total">${{ number_format($total) }}</strong></div>
                         </div>
                     </div>
                     <div class="payment-method">
@@ -130,7 +132,8 @@
                                 Direct Bank Transfer
                             </label>
                             <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
                             </div>
                         </div>
                         <div class="input-radio">
@@ -140,7 +143,8 @@
                                 Cheque Payment
                             </label>
                             <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
                             </div>
                         </div>
                         <div class="input-radio">
@@ -150,7 +154,8 @@
                                 Paypal System
                             </label>
                             <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
                             </div>
                         </div>
                     </div>
@@ -169,4 +174,55 @@
         </div>
         <!-- /container -->
     </div>
-@endsection
+
+@include('partials.footer')
+
+
+
+    <script type="text/javascript">
+
+        $(".update-cart").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            $.ajax({
+                url: '{{ url('update-cart') }}',
+                method: "patch",
+                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
+                success: function (response) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $(".remove-from-cart").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            if(confirm("Are you sure")) {
+                $.ajax({
+                    url: '{{ url('remove-from-cart') }}',
+                    method: "DELETE",
+                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+
+    </script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/slick.min.js')}}"></script>
+<script src="{{asset('js/nouislider.min.js')}}"></script>
+<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
+</body>
+</html>
+
+
+
+
