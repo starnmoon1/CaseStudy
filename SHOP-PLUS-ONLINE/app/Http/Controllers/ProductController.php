@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Comment;
 use App\Http\Services\Categories\CategoryServiceInterface;
 use App\Http\Services\Products\ProductServiceInterface;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -18,15 +22,24 @@ class ProductController extends Controller
     }
 
     public function index() {
+        if (!Gate::allows('crud-user')) {
+            abort(403);
+        }
         $products = $this->productService->getAll();
         return view('products.admin.list', compact('products'));
     }
 
-    public function detail() {
-        return view('products.detail');
+    public function detail($id) {
+        $comments = Comment::all();
+        $categories = $this->categoryService->getAll();
+        $product= Product::find($id);
+        return view('products.detail', compact('product', 'categories','comments'));
     }
 
     public function create() {
+        if (!Gate::allows('crud-user')) {
+            abort(403);
+        }
         $categories = $this->categoryService->getAll();
         return view('products.admin.create', compact('categories'));
     }
@@ -53,6 +66,11 @@ class ProductController extends Controller
         return redirect()->route('product.list');
     }
 
+    public function getByCategory($id)
+    {
+        $products = Category::find($id)->products->all();
+        return redirect(route('home',compact('products')));
+    }
 
 
     public function checkout()

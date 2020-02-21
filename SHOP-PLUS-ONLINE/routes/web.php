@@ -18,20 +18,24 @@ Route::post('/checkout/{total}/{quantity}', 'CartController@postCheckOut')->name
 
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
-//thang
+
 Route::post('/login','LoginController@login')->name('postLogin');
+
 Route::get('/logout','LoginController@logout')->name('logout');
 Route::middleware('CheckLogin')->prefix('users')->group(function (){
     Route::get('home', 'UserController@index')->name('login.home');
 });
 
+//route cua hoan khong xoa
+Route::get('/','HomeController@index')->name('home');
+Route::get('/category/detail/{id}','HomeController@getProductsByCategory')->name('category.detail');
 
 Route::get('/','HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search')->name('product.search');
 
 Route::prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
-        Route::get('/', 'UserController@index')->name('user.index'); //done
+        Route::get('/', 'UserController@index')->name('user.index')->middleware('CheckLogin'); //done
         Route::get('/create', 'UserController@create')->name('user.create'); //done
         Route::post('/create', 'UserController@store')->name('user.store'); //done
         Route::get('/delete/{id}', 'UserController@destroy')->name('user.destroy'); //done
@@ -57,16 +61,18 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
 
-        Route::get('/detail', 'ProductController@detail')->name('product.detail'); //done
+
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
         Route::get('/cart', 'ProductController@formCart')->name('product.cart');
     });
 });
 
+
+
 //import and export nhom hoan
 //->name('formImport'); check middleware
 Route::get('export', 'ExportController@export')->name('export');
-Route::get('importExportView', 'ExportController@importExportView');
+Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
 
 
@@ -74,10 +80,10 @@ Route::post('import', 'ExportController@import')->name('import');
 Route::get('google', function () {
     return view('googleAuth');
 });
-Route::get('auth/google', 'SocialController@redirectToGoogle');
-Route::get('auth/google/callback', 'SocialController@handleGoogleCallback');
-
-
+Route::get('/redirect', 'SocialAuthGoogleController@redirect')->name('google');
+Route::get('/callback', 'SocialAuthGoogleController@callback');
 
 //nhanh anh thang
-Route::post('/comment', 'UserController@postComment')->name('comment');
+Route::post('/admin/product/detail/{id}', 'CommentController@postComments')->name('comment');
+Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
+Route::get('/product/detail/{id}', 'ProductController@detail')->name('product.detail');

@@ -1,5 +1,6 @@
 @extends('admin')
 @section('content')
+    @can('crud-user')
     <div class="card o-hidden border-0 shadow-lg my-12">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
@@ -49,4 +50,5 @@
             </div>
         </div>
     </div>
+    @endcan
 @endsection

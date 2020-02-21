@@ -16,9 +16,9 @@
                                 <div class="product-preview slick-slide slick-current slick-active" data-slick-index="0"
                                      aria-hidden="false" tabindex="0"
                                      style="width: 458px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1; overflow: hidden;">
-                                    <img src="{{asset('img/product01.png')}}" alt="">
+                                    <img src="{{$product->image}}" width="458" height="458">
                                     <img role="presentation"
-                                         src="file:///var/www/html/template/electro/img/product01.png" class="zoomImg"
+                                         src="{{$product->image}}" class="zoomImg" width="600" height="600"
                                          style="position: absolute; top: -76.5808px; left: -68.6747px; opacity: 0; width: 600px; height: 600px; border: none; max-width: none; max-height: none;">
                                 </div>
                                 <div class="product-preview slick-slide" data-slick-index="1" aria-hidden="true"
@@ -126,7 +126,7 @@
                 <!-- Product details -->
                 <div class="col-md-5">
                     <div class="product-details">
-                        <h2 class="product-name">product name goes here</h2>
+                        <h2 class="product-name">{{$product->name}}</h2>
                         <div>
                             <div class="product-rating">
                                 <i class="fa fa-star"></i>
@@ -138,14 +138,12 @@
                             <a class="review-link" href="#">10 Review(s) | Add your review</a>
                         </div>
                         <div>
-                            <h3 class="product-price">$980.00
-                                <del class="product-old-price">$990.00</del>
+                            <h3 class="product-price">${{$product->price}}
+                                <del class="product-old-price">{{$product->price * 0.5}}</del>
                             </h3>
                             <span class="product-available">In Stock</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>{{$product->content}}</p>
 
                         <div class="product-options">
                             <label>
@@ -203,8 +201,8 @@
                         <!-- product tab nav -->
                         <ul class="tab-nav">
                             <li><a data-toggle="tab" href="#tab1">Description</a></li>
-                            <li  class="active"><a data-toggle="tab" href="#tab2">Details </a></li>
-                            <li><a data-toggle="tab" href="#tab3">Comment (3)</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Details </a></li>
+                            <li><a data-toggle="tab" href="#tab3">Comment ({{$comments->count()}})</a></li>
                         </ul>
                         <!-- /product tab nav -->
 
@@ -214,10 +212,7 @@
                             <div id="tab1" class="tab-pane fade in active">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p> 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                           fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                            laborum.</p>
+                                        <p>{{$product->description}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -227,13 +222,7 @@
                             <div id="tab2" class="tab-pane fade in">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                            laborum.</p>
+                                        <p>{{$product->content}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -325,14 +314,15 @@
                                         </div>
                                     </div>
 
-                                    <!-- /Comment -->
                                     <div class="col-md-9">
-                                        <form action="{{route('comment')}}">
+                                        @if(\Illuminate\Support\Facades\Auth::user())
+                                        <form method="post" action="{{route('comment', $product->id)}}">
+                                            @csrf
                                         <div id="reviews">
                                             <ul class="reviews">
                                                 <li>
                                                     <div class="review-heading">
-                                                        <h5 class="name">John</h5>
+                                                        <h5 class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
                                                         <p class="date">27 DEC 2018, 8:0 PM</p>
                                                         <div class="review-rating">
                                                             <i class="fa fa-star"></i>
@@ -347,8 +337,8 @@
                                                     <div class="review-body">
                                                         <div>
 
-                                                                <textarea id="subject" name="comnent_user" placeholder="Write something.."></textarea>
-                                                                <button type="submit" href="{{route('product.detail')}}" class="btn btn-success">Post</button>
+                                                                <textarea id="subject" name="comment_user" placeholder="Write something.."></textarea>
+                                                                <button type="submit" class="btn btn-success">Comment</button>
                                                                 <button type="reset" class="btn btn-secondary">Cancel</button>
 
                                                         </div>
@@ -356,6 +346,19 @@
                                                 </li>
                                                 </li>
                                             </ul>
+
+                                            <ul class="reviews">
+                                                @foreach($comments as $comment)
+                                                <li>
+                                                    <div class="review-heading">
+                                                        <i class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</i>
+                                                    </div>
+                                                </li>
+
+                                                <li>{{$comment->comment_user}}</li>
+                                                    @endforeach
+                                            </ul>
+
                                             <ul class="reviews-pagination">
                                                 <li class="active">1</li>
                                                 <li><a href="#">2</a></li>
@@ -365,6 +368,7 @@
                                             </ul>
                                         </div>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -403,8 +407,8 @@
                         </div>
                         <div class="product-body">
                             <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            <h3 class="product-name"><a href="#">fsfsdf</a></h3>
+                            <h4 class="product-price">$980.00 <del class="product-old-price"></del></h4>
                             <div class="product-rating">
                             </div>
                             <div class="product-btns">
@@ -431,7 +435,7 @@
                         </div>
                         <div class="product-body">
                             <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                            <h3 class="product-name"><a href="#">fsfdsf</a></h3>
                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                             <div class="product-rating">
                                 <i class="fa fa-star"></i>

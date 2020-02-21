@@ -21,6 +21,6 @@ class Product extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment', 'productId', 'id');
     }
 }

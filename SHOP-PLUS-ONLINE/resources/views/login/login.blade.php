@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="footer">
-        <p><a href="{{route('home')}}">Shop Plus+</a></p>
+        <span><p><a href="{{route('home')}}">Shop Plus+</a></p></span>
     </div>
 </div>
 

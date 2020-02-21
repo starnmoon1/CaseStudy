@@ -19,6 +19,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+
         $this->userService->create($request);
         return redirect()->route('login');
     }
@@ -34,6 +35,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+
         $this->userService->destroy($id);
         return redirect()->route('user.index');
     }

@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">HOME</div>
+        <div class="sidebar-brand-text mx-3">home</div>
     </a>
 
     <!-- Divider -->
@@ -24,10 +24,12 @@
             <span>Download</span>
         </a>
         <div id="collapseTwo-a" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            @can('crud-user')
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('export') }}">Export excel</a>
-                <a class="collapse-item" href="">Import excel</a>
+                <a class="collapse-item" href="{{ route('importExportView') }}">Import excel</a>
             </div>
+            @endcan
         </div>
     </li>
 
@@ -42,7 +44,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             @can('crud-user')
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="">List</a>
+                <a class="collapse-item" href="{{route('user.index')}}">List</a>
             </div>
             @endcan
         </div>
@@ -83,9 +85,6 @@
         </div>
     </li>
 
-
-
-    <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>

@@ -3,14 +3,23 @@
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                @if(Auth::user())
+                <li><a href="#"><i class="fa fa-phone"></i>{{Auth::user()->phone}}</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> {{Auth::user()->email}}</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> {{Auth::user()->name}}</a></li>
+                    @if(Auth::user()->email == 'admin@gmail.com')
+                    <li><a href="{{route('user.index')}}"><i class="fas fa-users-cog"></i> Admin</a></li>
+                    @endif
+                @endif
             </ul>
             <ul class="header-links pull-right">
-                <li><a href="{{route('login')}}">Login</a></li>
-                <li><a href="{{route('register')}}">Register</a></li>
-
+                @if(Auth::user())
+                    <li><a href="{{route('register')}}">Register</a></li>
+                    <li><a href="{{route('logout')}}">Logout</a></li>
+                @else
+                    <li><a href="{{route('register')}}">Register</a></li>
+                    <li><a href="{{route('login')}}">Login</a></li>
+                @endif
             </ul>
 
         </div>
@@ -38,15 +47,11 @@
                     <div class="header-search">
                         <form method="get" action="{{route('product.search')}}">
                             @csrf
-                            <select class="input-select">
-                                <option value="0">All Categories</option>
-                                @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                            </select>
-                            <input class="input" placeholder="Search here" name="keyword">
-                            <button class="search-btn" type="submit">Search</button>
+
+                            <input class="input" id="#search-product" placeholder="Search here" name="keyword">
+                            <button class="search-btn">Search</button>
                         </form>
+
                     </div>
                 </div>
                 <!-- /SEARCH BAR -->
@@ -58,7 +63,9 @@
                         <div>
                             <a href="#">
                                 <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
+                                <span>Channel Page</span>
+
+
                                 <div class="qty">2</div>
                             </a>
                         </div>
