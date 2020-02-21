@@ -8,14 +8,13 @@
                 <img src="{{$product->image}}" width="263px" height="263px">
                 </a>
                 <div class="product-label">
-                    <span class="sale">-30%</span>
+                    <span class="sale">-20%</span>
                     <span class="new">NEW</span>
                 </div>
             </div>
             <div class="product-body">
-                <p class="product-category">{{$product->description}}</p>
-                <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
-                <h4 class="product-price">${{$product->price}} <del class="product-old-price">$990.00</del></h4>
+                <h3 class="product-name"><a href="">{{$product->name}}</a></h3>
+                <h4 class="product-price">${{$product->price}} <del class="product-old-price">${{$product->price * 2}}</del></h4>
                 <div class="product-rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -35,8 +34,6 @@
         </div>
     </div>
     @endforeach
-    <div id="aside" class="col-md-9">
-
         <div class="col-md-4 col-xs-6">
             <div class="shop">
                 <div class="shop-img">
@@ -335,5 +332,6 @@
         </div>
     </div>
 @endsection
+<script src="https://kit.fontawesome.com/92c99bd371.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="{{asset('js/ajax.js')}}"></script>

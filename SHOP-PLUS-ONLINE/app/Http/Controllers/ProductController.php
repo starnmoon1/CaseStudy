@@ -8,6 +8,7 @@ use App\Http\Services\Categories\CategoryServiceInterface;
 use App\Http\Services\Products\ProductServiceInterface;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -21,6 +22,9 @@ class ProductController extends Controller
     }
 
     public function index() {
+        if (!Gate::allows('crud-user')) {
+            abort(403);
+        }
         $products = $this->productService->getAll();
         return view('products.admin.list', compact('products'));
     }
@@ -33,6 +37,9 @@ class ProductController extends Controller
     }
 
     public function create() {
+        if (!Gate::allows('crud-user')) {
+            abort(403);
+        }
         $categories = $this->categoryService->getAll();
         return view('products.admin.create', compact('categories'));
     }
@@ -61,7 +68,7 @@ class ProductController extends Controller
 
     public function getByCategory($id)
     {
-        //$products = Category::find($id)->products->all();
+        $products = Category::find($id)->products->all();
         return redirect(route('home',compact('products')));
     }
 

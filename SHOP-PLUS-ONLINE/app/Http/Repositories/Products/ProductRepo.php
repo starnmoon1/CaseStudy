@@ -20,6 +20,11 @@ class ProductRepo implements ProductRepoInterface
         return $this->product->all();
     }
 
+    public function getById($id)
+    {
+        return $this->product->all()->where('category_id', $id);
+    }
+
     public function delete($obj)
     {
         $obj->delete();
@@ -44,4 +49,6 @@ class ProductRepo implements ProductRepoInterface
     {
         return $this->product->where('name', 'like', '%'.$keyword.'%')->get();
     }
+
+
 }

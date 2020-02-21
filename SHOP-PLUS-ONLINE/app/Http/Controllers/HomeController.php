@@ -22,13 +22,16 @@ class HomeController extends Controller
         return view('home', compact(['products','categories']));
     }
 
+    public function getProductsByCategory($id) {
+        $products = $this->productService->getById($id);
+        $categories = $this->categoryService->getAll();
+        return view('home', compact(['products','categories']));
+    }
+
     public function search(Request $request)
     {
         $categories = $this->categoryService->getAll();
         $products = $this->productService->search($request);
         return view('home', compact(['products','categories']));
     }
-
-
-
 }

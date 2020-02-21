@@ -202,7 +202,7 @@
                         <ul class="tab-nav">
                             <li><a data-toggle="tab" href="#tab1">Description</a></li>
                             <li><a data-toggle="tab" href="#tab2">Details </a></li>
-                            <li class="active"><a data-toggle="tab" href="#tab3">Comment ({{$comments->count()}})</a></li>
+                            <li><a data-toggle="tab" href="#tab3">Comment ({{$comments->count()}})</a></li>
                         </ul>
                         <!-- /product tab nav -->
 
@@ -315,6 +315,7 @@
                                     </div>
 
                                     <div class="col-md-9">
+                                        @if(\Illuminate\Support\Facades\Auth::user())
                                         <form method="post" action="{{route('comment', $product->id)}}">
                                             @csrf
                                         <div id="reviews">
@@ -345,9 +346,19 @@
                                                 </li>
                                                 </li>
                                             </ul>
-                                            <div>
-                                                <h2>hien thi comment o day</h2>
-                                            </div>
+
+                                            <ul class="reviews">
+                                                @foreach($comments as $comment)
+                                                <li>
+                                                    <div class="review-heading">
+                                                        <i class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</i>
+                                                    </div>
+                                                </li>
+
+                                                <li>{{$comment->comment_user}}</li>
+                                                    @endforeach
+                                            </ul>
+
                                             <ul class="reviews-pagination">
                                                 <li class="active">1</li>
                                                 <li><a href="#">2</a></li>
@@ -357,6 +368,7 @@
                                             </ul>
                                         </div>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

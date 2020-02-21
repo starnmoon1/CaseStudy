@@ -35,6 +35,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+
         $this->userService->destroy($id);
         return redirect()->route('user.index');
     }

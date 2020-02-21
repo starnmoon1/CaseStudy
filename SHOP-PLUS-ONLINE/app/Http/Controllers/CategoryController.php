@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\Categories\CategoryServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -15,11 +16,17 @@ class CategoryController extends Controller
 
     public function index()
     {
+        if (!Gate::allows('crud-user')) {
+            abort(403);
+        }
         $categories = $this->categoryService->getAll();
         return view('categories.admin.list', compact('categories'));
     }
     public function create()
     {
+        if (!Gate::allows('crud-user')) {
+            abort(403);
+        }
         return view('categories.admin.create');
     }
 
