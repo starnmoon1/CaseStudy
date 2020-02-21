@@ -6,6 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/SHOP-PLUS-ONLINE/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/SHOP-PLUS-ONLINE/app" isTestSource="false" packagePrefix="App\" />
+      <excludeFolder url="file://$MODULE_DIR$/SHOP-PLUS-ONLINE/vendor/maatwebsite/excel" />
+      <excludeFolder url="file://$MODULE_DIR$/SHOP-PLUS-ONLINE/vendor/markbaker/complex" />
+      <excludeFolder url="file://$MODULE_DIR$/SHOP-PLUS-ONLINE/vendor/markbaker/matrix" />
+      <excludeFolder url="file://$MODULE_DIR$/SHOP-PLUS-ONLINE/vendor/phpoffice/phpspreadsheet" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
