@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +21,15 @@
             height: 29.7cm;
             margin: 0 auto;
             color: #001028;
+
             background: #f1f1f1;
             font-family: Arial, sans-serif;
             font-size: 16px;
+          
         }
         header {
             padding: 50px 0;
+         
             margin-bottom: 30px;
         }
         #logo {
@@ -35,6 +39,7 @@
         #logo img {
             width: 90px;
         }
+
         h1 {
             border-top: 1px solid  #5D6975;
             border-bottom: 1px solid  #5D6975;
@@ -46,9 +51,12 @@
             margin: 0 0 20px 0;
             background: url(dimension.png);
         }
+
+
         #project {
             float: left;
         }
+
         #project span {
             color: #5D6975;
             text-align: right;
@@ -65,6 +73,10 @@
         #company div {
             white-space: nowrap;
             padding: 6px;
+
+        #project div,
+        #company div {
+            white-space: nowrap;
         }
         table {
             width: 100%;
@@ -75,6 +87,11 @@
         table tr:nth-child(2n-1) td {
             background: #F5F5F5;
         }
+
+        table tr:nth-child(2n-1) td {
+            background: #F5F5F5;
+        }
+
         table th,
         table td {
             text-align: center;
@@ -86,14 +103,17 @@
             white-space: nowrap;
             font-weight: normal;
         }
+
         table .service,
         table .desc {
             text-align: left;
         }
+
         table td {
             padding: 20px;
             text-align: right;
         }
+
         table td.service,
         table td.desc {
             vertical-align: top;
@@ -103,9 +123,16 @@
         table td.total {
             font-size: 1.2em;
         }
+
         table td.grand {
             border-top: 1px solid #5D6975;;
         }
+
+        table td.grand {
+            border-top: 1px solid #5D6975;;
+        }
+
+
         #notices .notice {
             color: #5D6975;
             font-size: 1.2em;
@@ -125,6 +152,7 @@
 <body>
 <header class="clearfix">
     <div id="logo">
+
         {{--        <img src="logo.png">--}}
     </div>
     <h1>INVOICE</h1>
@@ -134,6 +162,17 @@
         <div><a href="mailto:company@example.com">shoplus@gmail.com</a></div>
     </div>
     <div id="project">
+{{--        <img src="logo.png">--}}
+    </div>
+    <h1>INVOICE</h1>
+    <div id="company" class="clearfix">
+        <div>Company Name</div>
+        <div>Shop Plus<br />Việt Nam</div>
+        <div>(602) 519-0450</div>
+        <div><a href="mailto:company@example.com">shoplus@gmail.com</a></div>
+    </div>
+    <div id="project">
+        <div><span>PROJECT</span> SHOP PLUS</div>
         <div><span>CLIENT</span> {{$customer->name}}</div>
         <div><span>ADDRESS</span> {{$customer->address}}</div>
         <div><span>EMAIL</span> <a href="mailto:{{$customer->email}}">{{$customer->email}}</a></div>
@@ -170,5 +209,31 @@
 
     <a style="color:blue; font-size:18px" href="{{url('/')}}" >Quay lại mua sắm</a>
 </main>
+        <tr>
+            <td class="service">{{ $details['name'] }}</td>
+            <td class="desc">{{$bill->note}}</td>
+            <td class="unit">{{number_format($details['price'])}}</td>
+            <td class="qty">{{$details['quantity']}}</td>
+            <td class="total">${{ number_format($details['price'] * $details['quantity'])}} </td>
+        </tr>
+@endforeach
+        <tr>
+            <td colspan="4">TOTAL</td>
+            <td class="total">${{ number_format($bill->total)}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="notices">
+        <div>NOTICE:</div>
+        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+    </div>
+    <br>
+    <a style="color:blue; font-size: 15px" href="{{url('/')}}">Quay lại mua sắm</a>
+</main>
+<footer>
+    Invoice was created on a computer and is valid without the signature and seal.
+
+
+</footer>
 </body>
 </html>
