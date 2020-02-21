@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 //long
 
-Route::get('cart','CartController@index');
+Route::get('cart','CartController@index')->name('cart');
 Route::get('add-to-cart/{id}','CartController@addToCart')->name('addToCart');
 
 Route::patch('update-cart', 'CartController@update');
@@ -63,7 +63,6 @@ Route::prefix('admin')->group(function () {
 
 
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
-        Route::get('/cart', 'ProductController@formCart')->name('product.cart');
     });
 });
 

@@ -9,7 +9,6 @@
                 @foreach($categories as $category)
                 <li><a href="{{route('category.detail', $category->id)}}">{{$category->name}}</a></li>
                 @endforeach
-
             </ul>
             <!-- /NAV -->
         </div>
