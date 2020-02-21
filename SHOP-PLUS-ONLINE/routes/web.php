@@ -67,10 +67,8 @@ Route::post('import', 'ExportController@import')->name('import');
 Route::get('google', function () {
     return view('googleAuth');
 });
-Route::get('/google', 'SocialController@redirectToGoogle');
-Route::get('/google/callback', 'SocialController@handleGoogleCallback');
-
-
+Route::get('/redirect', 'SocialAuthGoogleController@redirect')->name('google');
+Route::get('/callback', 'SocialAuthGoogleController@callback');
 
 //nhanh anh thang
 Route::post('/admin/product/detail/{id}', 'CommentController@postComments')->name('comment');
