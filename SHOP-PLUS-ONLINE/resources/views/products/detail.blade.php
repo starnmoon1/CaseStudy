@@ -295,14 +295,14 @@
                                     </div>
 
                                     <div class="col-md-9">
-                                        @if(\Illuminate\Support\Facades\Auth::user())
+                                        @if(Auth::user())
                                         <form method="post" action="{{route('comment', $product->id)}}">
                                             @csrf
                                         <div id="reviews">
                                             <ul class="reviews">
                                                 <li>
                                                     <div class="review-heading">
-                                                        <h5 class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
+                                                        <h5 class="name">{{Auth::user()->name}}</h5>
                                                         <p class="date">27 DEC 2018, 8:0 PM</p>
                                                         <div class="review-rating">
                                                             <i class="fa fa-star"></i>
@@ -329,14 +329,14 @@
 
                                             <ul class="reviews">
                                                 @foreach($comments as $comment)
-                                                <li>
-                                                    <div class="review-heading">
-                                                        <i class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</i>
-                                                    </div>
-                                                </li>
+{{--                                                <li>--}}
+{{--                                                    <div class="review-heading">--}}
+{{--                                                        <i class="name">{{Auth::user()->name}}</i>--}}
+{{--                                                    </div>--}}
+{{--                                                </li>--}}
 
-                                                <li>{{$comment->user->name}}</li>
-                                                    @endforeach
+                                                <li>{{$comment->comment_user}}</li>
+                                                @endforeach
                                             </ul>
 
                                             <ul class="reviews-pagination">

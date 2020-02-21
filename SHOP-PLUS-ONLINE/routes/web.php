@@ -66,21 +66,11 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-
-
 //import and export nhom hoan
 //->name('formImport'); check middleware
 Route::get('export', 'ExportController@export')->name('export');
 Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
-
-
-//login google
-Route::get('google', function () {
-    return view('googleAuth');
-});
-Route::get('/redirect', 'SocialAuthGoogleController@redirect')->name('google');
-Route::get('/callback', 'SocialAuthGoogleController@callback');
 
 //nhanh anh thang
 Route::post('/admin/product/detail/{id}', 'CommentController@postComments')->name('comment');

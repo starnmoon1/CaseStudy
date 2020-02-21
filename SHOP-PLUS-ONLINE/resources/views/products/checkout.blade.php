@@ -18,26 +18,35 @@
                         <div class="section-title">
                             <h3 class="title">Customer Infomation</h3>
                         </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div><br />
+                        @endif
                         <form action="{{url('/checkout/'.$total.'/'.$quatity)}}" method="post">
                             @csrf
                             <div class="form-group">
-                                <input class="input" type="text" name="name" placeholder="Name">
+                                <input class="input" type="text" name="name" placeholder="Name" value="{{old('name')}}">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email">
+                                <input class="input" type="email" name="email" placeholder="Email" value="{{old('email')}}">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Address">
+                                <input class="input" type="text" name="address" placeholder="Address" value="{{old('address')}}">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="phone" placeholder="Phone">
+                                <input class="input" type="text" name="phone" placeholder="Phone" value="{{old('phone')}}">
                             </div>
                             <div class="form-group">
                             </div>
                     </div>
                     <!-- Order notes -->
                     <div class="order-notes">
-                        <textarea class="input" name="note" placeholder="Order Notes"></textarea>
+                        <textarea class="input" name="note" placeholder="Order Notes" value="{{old('note')}}"></textarea>
                     </div>
 
 
@@ -73,7 +82,7 @@
                             <div><strong class="order-total">${{number_format($total)}}</strong></div>
                         </div>
                     </div>
-                    <button class="primary-btn order-submit" type="submit">Place order</button>
+                    <button class="primary-btn order-submit" type="submit">Check Out</button>
                     @csrf
                 </div>
                 </form>

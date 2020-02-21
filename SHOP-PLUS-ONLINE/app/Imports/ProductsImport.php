@@ -16,7 +16,7 @@ class ProductsImport implements ToModel
             'content'    => $row[2],
             'image'    => $row[3],
             'price'    => $row[4],
-            'password' => \Hash::make('123456'),
+            'category_id'=> (int)$row[5],
         ]);
     }
 }

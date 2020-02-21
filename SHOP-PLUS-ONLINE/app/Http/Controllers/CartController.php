@@ -95,6 +95,13 @@ class CartController extends Controller
     }
 
     public function postCheckOut(Request $request, $total,$quantity) {
+        $request->validate([
+            'name'=>'required',
+            'address'=> 'required|',
+            'phone' => 'required|',
+            'email' => 'required|'
+        ]);
+
         $customer = new Customer();
         $customer->fill($request->all());
         $customer->save();
