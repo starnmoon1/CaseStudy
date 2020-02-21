@@ -44,7 +44,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             @can('crud-user')
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="">List</a>
+                <a class="collapse-item" href="{{route('user.index')}}">List</a>
             </div>
             @endcan
         </div>

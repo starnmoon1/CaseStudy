@@ -21,6 +21,10 @@ class ProductService implements ProductServiceInterface
     {
         return $this->productRepo->getAll();
     }
+    public function getById($id)
+    {
+        return $this->productRepo->getById($id);
+    }
 
     public function create($request)
     {
@@ -85,4 +89,6 @@ class ProductService implements ProductServiceInterface
     {
         return $this->productRepo->findById($id);
     }
+
+
 }

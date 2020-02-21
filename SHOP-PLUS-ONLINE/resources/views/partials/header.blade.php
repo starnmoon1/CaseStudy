@@ -7,18 +7,19 @@
                 <li><a href="#"><i class="fa fa-phone"></i>{{\Illuminate\Support\Facades\Auth::user()->phone}}</a></li>
                 <li><a href="#"><i class="fa fa-envelope-o"></i> {{\Illuminate\Support\Facades\Auth::user()->email}}</a></li>
                 <li><a href="#"><i class="fa fa-map-marker"></i> {{\Illuminate\Support\Facades\Auth::user()->name}}</a></li>
+                    @if(\Illuminate\Support\Facades\Auth::user()->email == 'admin@gmail.com')
+                    <li><a href="{{route('user.index')}}"><i class="fas fa-users-cog"></i> Admin</a></li>
+                    @endif
                 @endif
             </ul>
             <ul class="header-links pull-right">
                 @if(\Illuminate\Support\Facades\Auth::user())
-                <a href="{{route('logout')}}">
-                    <i class="fa fa-sign-in"></i>
-                </a>
+                    <li><a href="{{route('register')}}">Register</a></li>
+                    <li><a href="{{route('logout')}}">Logout</a></li>
+                @else
+                    <li><a href="{{route('register')}}">Register</a></li>
+                    <li><a href="{{route('login')}}">Login</a></li>
                 @endif
-                <li><a href="{{route('login')}}">Login</a></li>
-                <li><a href="{{route('register')}}">Register</a></li>
-
-
             </ul>
 
         </div>

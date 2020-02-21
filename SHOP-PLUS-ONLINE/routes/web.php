@@ -4,21 +4,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/','UserController@store')->name('user.store');
 
-Route::get('/login/login','LoginController@formLogin')->name('login');
+Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
 
-Route::post('/login/logout','LoginController@login')->name('postLogin');
-Route::get('/login','LoginController@logout')->name('logout');
 Route::post('/login','LoginController@login')->name('postLogin');
+
 Route::get('/logout','LoginController@logout')->name('logout');
 Route::middleware('CheckLogin')->prefix('users')->group(function (){
     Route::get('home', 'UserController@index')->name('login.home');
 });
 
 //route cua hoan khong xoa
-Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
+Route::get('/','HomeController@index')->name('home');
+Route::get('/category/detail/{id}','HomeController@getProductsByCategory')->name('category.detail');
 
-Route::get('/','HomeController@index')->name('home')->middleware('CheckLogin');
 Route::get('/search', 'HomeController@search')->name('product.search');
 
 Route::prefix('admin')->group(function () {
@@ -48,16 +47,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', 'ProductController@delete')->name('product.delete'); //done
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
-        Route::get('detail/{id}', 'ProductController@detail')->name('product.detail');
 
-
-//        Route::get('/detail', 'ProductController@detail')->name('product.detail'); //done
 
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
         Route::get('/cart', 'ProductController@formCart')->name('product.cart');
-        Route::get('detail', 'ProductController@detail')->name('product.detail'); //done
     });
 });
+
+
 
 //import and export nhom hoan
 //->name('formImport'); check middleware
@@ -76,5 +73,6 @@ Route::get('/google/callback', 'SocialController@handleGoogleCallback');
 
 
 //nhanh anh thang
-Route::post('/admin/product/detail', 'CommentController@postComments')->name('comment');
+Route::post('/admin/product/detail/{id}', 'CommentController@postComments')->name('comment');
 Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
+Route::get('/product/detail/{id}', 'ProductController@detail')->name('product.detail');
