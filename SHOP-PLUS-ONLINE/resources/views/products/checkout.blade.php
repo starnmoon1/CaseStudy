@@ -16,36 +16,32 @@
                     <!-- Billing Details -->
                     <div class="billing-details">
                         <div class="section-title">
-                            <h3 class="title">Thông tin khách h</h3>
+                            <h3 class="title">Customer Infomation</h3>
                         </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div><br />
+                        @endif
                         <form action="{{url('/checkout/'.$total.'/'.$quatity)}}" method="post">
                             @csrf
                             <div class="form-group">
-                                <input class="input" type="text" name="name" placeholder="First Name">
+                                <input class="input" type="text" name="name" placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <input class="input" type="email" name="email" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Email">
+                                <input class="input" type="text" name="address" placeholder="Address">
                             </div>
                             <div class="form-group">
                                 <input class="input" type="text" name="phone" placeholder="Phone">
                             </div>
                             <div class="form-group">
-                                <div class="input-checkbox">
-                                    <input type="checkbox" id="create-account">
-                                    <label for="create-account">
-                                        <span></span>
-                                        Create Account?
-                                    </label>
-                                    <div class="caption">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt.</p>
-                                        <input class="input" type="password" name="password"
-                                               placeholder="Enter Your Password">
-                                    </div>
-                                </div>
                             </div>
                     </div>
                     <!-- Order notes -->
@@ -85,48 +81,6 @@
                             <div><strong>TOTAL</strong></div>
                             <div><strong class="order-total">${{number_format($total)}}</strong></div>
                         </div>
-                    </div>
-                    <div class="payment-method">
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-1">
-                            <label for="payment-1">
-                                <span></span>
-                                Direct Bank Transfer
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-2">
-                            <label for="payment-2">
-                                <span></span>
-                                Cheque Payment
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-3">
-                            <label for="payment-3">
-                                <span></span>
-                                Paypal System
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-checkbox">
-                        <input type="checkbox" id="terms">
-                        <label for="terms">
-                            <span></span>
-                            I've read and accept the <a href="#">terms &amp; conditions</a>
-                        </label>
                     </div>
                     <button class="primary-btn order-submit" type="submit">Place order</button>
                     @csrf

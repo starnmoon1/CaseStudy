@@ -88,6 +88,10 @@
       <path value="$PROJECT_DIR$/SHOP-PLUS-ONLINE/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/SHOP-PLUS-ONLINE/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/SHOP-PLUS-ONLINE/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/SHOP-PLUS-ONLINE/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/SHOP-PLUS-ONLINE/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/SHOP-PLUS-ONLINE/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/SHOP-PLUS-ONLINE/vendor/maatwebsite/excel" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

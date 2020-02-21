@@ -124,49 +124,7 @@
                             <div><strong class="order-total">${{ number_format($total) }}</strong></div>
                         </div>
                     </div>
-                    <div class="payment-method">
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-1">
-                            <label for="payment-1">
-                                <span></span>
-                                Direct Bank Transfer
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-2">
-                            <label for="payment-2">
-                                <span></span>
-                                Cheque Payment
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-3">
-                            <label for="payment-3">
-                                <span></span>
-                                Paypal System
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-checkbox">
-                        <input type="checkbox" id="terms">
-                        <label for="terms">
-                            <span></span>
-                            I've read and accept the <a href="#">terms &amp; conditions</a>
-                        </label>
-                    </div>
-                    <a href="#" class="primary-btn order-submit">Place order</a>
+                    <a href="{{url('/admin/product/checkout')}}" class="primary-btn order-submit">Check out</a>
                 </div>
                 <!-- /Order Details -->
             </div>
