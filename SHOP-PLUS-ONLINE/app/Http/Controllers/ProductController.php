@@ -15,6 +15,8 @@ class ProductController extends Controller
 {
     protected $productService;
     protected $categoryService;
+    protected $comment;
+
     public function __construct(ProductServiceInterface $productService, CategoryServiceInterface $categoryService)
     {
         $this->productService=$productService;
@@ -30,10 +32,11 @@ class ProductController extends Controller
     }
 
     public function detail($id) {
+        $products = $this->productService->getAll();
         $comments = Comment::all();
         $categories = $this->categoryService->getAll();
         $product= Product::find($id);
-        return view('products.detail', compact('product', 'categories','comments'));
+        return view('products.detail', compact('product','categories','comments','products'));
     }
 
     public function create() {

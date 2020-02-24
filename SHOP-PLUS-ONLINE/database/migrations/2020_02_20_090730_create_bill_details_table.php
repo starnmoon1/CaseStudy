@@ -17,7 +17,7 @@ class CreateBillDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('bill_id')->nullable();;
             $table->integer('product_id')->nullable();;
-            $table->integer('quantily')->nullable();;
+            $table->integer('quantity')->nullable();;
             $table->double('price')->nullable();;
             $table->timestamps();
         });

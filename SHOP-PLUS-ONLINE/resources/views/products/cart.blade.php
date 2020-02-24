@@ -18,7 +18,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+        button.btn.btn-danger.btn-sm.remove-from-cart {
+            position: relative;
+            top: 2px;
+        }
 
+    </style>
 </head>
 <body>
 @include('partials.header')
@@ -55,10 +61,10 @@
                                             <div class="row">
                                                 <div class="col-sm-3 hidden-xs">
 
-{{--                                                    <img src="{{asset('storage/images/'.$details['image']) }}" width="100" height="100" class="img-responsive"/>--}}
+                                                    <img src="{{$details['image'] }}" width="100" height="100" class="img-responsive"/>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <h4 class="nomargin">{{ $details['name'] }}</h4>
+                                                    <p class="nomargin">{{ $details['name'] }}</p>
                                                 </div>
                                             </div>
                                         </td>
@@ -85,7 +91,7 @@
                                 <td class="text-center"><strong>Total {{number_format( $total ) }}</strong></td>
                             </tr>
                             <tr>
-                                <td><a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>
+                                <td><a href="{{ route('home') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>
                                         Continue Shopping</a></td>
                                 <td colspan="2" class="hidden-xs"></td>
                                 <td class="hidden-xs text-center"><strong>Total ${{ number_format($total) }}</strong>
