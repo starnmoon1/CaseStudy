@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-//long
-
 Route::get('cart','CartController@index')->name('cart');
 Route::get('add-to-cart/{id}','CartController@addToCart')->name('addToCart');
 
@@ -11,10 +9,6 @@ Route::patch('update-cart', 'CartController@update');
 
 Route::delete('remove-from-cart', 'CartController@remove');
 Route::post('/checkout/{total}/{quantity}', 'CartController@postCheckOut')->name('postCheckout'); //done
-
-
-//Route::post('/','UserController@store')->name('user.store');
-
 
 Route::get('/login','LoginController@formLogin')->name('login');
 Route::get('/register','LoginController@formRegister')->name('register');
@@ -26,7 +20,6 @@ Route::middleware('CheckLogin')->prefix('users')->group(function (){
     Route::get('home', 'UserController@index')->name('login.home');
 });
 
-//route cua hoan khong xoa
 Route::get('/','HomeController@index')->name('home');
 Route::get('/category/detail/{id}','HomeController@getProductsByCategory')->name('category.detail');
 
@@ -60,19 +53,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', 'ProductController@delete')->name('product.delete'); //done
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit'); //done
         Route::post('/edit/{id}', 'ProductController@update')->name('product.update');//done
-
-
         Route::get('/checkout', 'ProductController@checkout')->name('product.checkout'); //done
     });
 });
 
-//import and export nhom hoan
-//->name('formImport'); check middleware
 Route::get('export', 'ExportController@export')->name('export');
 Route::get('importExportView', 'ExportController@importExportView')->name('importExportView');
 Route::post('import', 'ExportController@import')->name('import');
 
-//nhanh anh thang
 Route::post('/admin/product/detail/{id}', 'CommentController@postComments')->name('comment');
 Route::get('{id}', 'ProductController@getByCategory')->name('getByCategory');
 Route::get('/product/detail/{id}', 'ProductController@detail')->name('product.detail');
+
+Route::get('/redirect/{social}', 'SocialAuthController@redirect')->name('redirect');
+Route::get('/callback/{social}', 'SocialAuthController@callback')->name('callback');

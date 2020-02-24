@@ -122,8 +122,6 @@
                     </div>
                 </div>
                 <!-- /Product thumb imgs -->
-
-                <!-- Product details -->
                 <div class="col-md-5">
                     <div class="product-details">
                         <h2 class="product-name">{{$product->name}}</h2>
@@ -184,8 +182,6 @@
                             <li><a data-toggle="tab" href="#tab2">Details </a></li>
                             <li><a data-toggle="tab" href="#tab3">Comment ({{$comments->count()}})</a></li>
                         </ul>
-                        <!-- /product tab nav -->
-
                         <!-- product tab content -->
                         <div class="tab-content">
                             <!-- tab1  -->
@@ -377,7 +373,7 @@
                 </div>
 
                 @foreach($products as $product)
-                <div class="col-md-3 col-xs-6">
+                <div class="col-md-3 col-xs-3">
                     <div class="product">
                         <div class="product-img">
                             <img src="{{$product->image}}" width="263" height="263">
@@ -403,6 +399,7 @@
                     </div>
                 </div>
                 @endforeach
+            </div>
             </div>
             <!-- /row -->
         </div>
