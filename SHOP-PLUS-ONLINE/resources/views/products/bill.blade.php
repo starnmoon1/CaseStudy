@@ -83,12 +83,12 @@
         table tr:nth-child(2n-1) td {
             background: #F5F5F5;
         }
-        
+
         table th,
         table td {
             text-align: center;
         }
-        
+
         table th {
             padding: 5px 20px;
             color: #5D6975;
@@ -181,7 +181,7 @@
             <td class="qty">{{$details['quantity']}}</td>
             <td class="total">${{ number_format($details['price'] * $details['quantity'])}} </td>
         </tr>
-@endforeach
+        @endforeach
         <tr>
             <td colspan="4">TOTAL</td>
             <td class="total">${{ number_format($bill->total)}}</td>
@@ -197,8 +197,6 @@
 </main>
 <footer>
     Invoice was created on a computer and is valid without the signature and seal.
-
-
 </footer>
 
 </body>
