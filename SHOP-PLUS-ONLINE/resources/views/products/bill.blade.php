@@ -204,5 +204,8 @@
 
 
 </footer>
+<?php
+session()->forget('cart');
+?>
 </body>
 </html>
