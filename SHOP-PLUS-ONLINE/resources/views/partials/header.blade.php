@@ -1,3 +1,7 @@
+<?php
+    use App\Comment;
+    $comments = Comment::all();
+?>
 <header>
     <!-- TOP HEADER -->
     <div id="top-header">
@@ -63,10 +67,9 @@
                         <div>
                             <a href="#">
                                 <i class="fa fa-heart-o"></i>
-                                <span>Channel Page</span>
+                                <span>Comments</span>
 
-
-                                <div class="qty">2</div>
+                                <div class="qty">{{$comments->count()}}</div>
                             </a>
                         </div>
                         <!-- /Wishlist -->
@@ -90,11 +93,11 @@
                                         @foreach(session('cart') as $id => $details)
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
+                                            <img src="{{ $details['image'] }}" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">{{ $details['name'] }}</a></h3>
-                                            <h4 class="product-price"><span class="qty">{{ $details['quantity'] }}x</span>
+                                            <h4 class="product-price"><span class="qty">{{ $details['quantity'] }} x</span>
                                                 ${{ number_format($details['price']) }}</h4>
                                         </div>
                                         <button class="delete"><i class="fa fa-close"></i></button>
@@ -108,7 +111,7 @@
                                     <h5>SUBTOTAL: ${{number_format($total)}}</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="{{route('product.cart')}}">View Cart</a>
+                                    <a href="{{route('cart')}}">View Cart</a>
                                     <a href="{{route('product.checkout')}}">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>

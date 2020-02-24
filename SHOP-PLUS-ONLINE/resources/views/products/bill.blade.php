@@ -11,39 +11,32 @@
             display: table;
             clear: both;
         }
-
         a {
             color: #5D6975;
             text-decoration: underline;
         }
-
         body {
             position: relative;
             width: 21cm;
             height: 29.7cm;
             margin: 0 auto;
             color: #001028;
-            background: #FFFFFF;
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            font-family: Arial;
-        }
 
+            background: #f1f1f1;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
         header {
-            padding: 10px 0;
+            padding: 50px 0;
             margin-bottom: 30px;
         }
-
-
         #logo {
             text-align: center;
             margin-bottom: 10px;
         }
-
         #logo img {
             width: 90px;
         }
-
         h1 {
             border-top: 1px solid  #5D6975;
             border-bottom: 1px solid  #5D6975;
@@ -77,8 +70,9 @@
         #project div,
         #company div {
             white-space: nowrap;
-        }
+            padding: 6px;
 
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -117,7 +111,6 @@
         table td.desc {
             vertical-align: top;
         }
-
         table td.unit,
         table td.qty,
         table td.total {
@@ -128,11 +121,13 @@
             border-top: 1px solid #5D6975;;
         }
 
+        table td.grand {
+            border-top: 1px solid #5D6975;;
+        }
         #notices .notice {
             color: #5D6975;
             font-size: 1.2em;
         }
-
         footer {
             color: #5D6975;
             width: 100%;
@@ -148,7 +143,7 @@
 <body>
 <header class="clearfix">
     <div id="logo">
-{{--        <img src="logo.png">--}}
+
     </div>
     <h1>INVOICE</h1>
     <div id="company" class="clearfix">
@@ -159,6 +154,7 @@
     </div>
     <div id="project">
         <div><span>PROJECT</span> SHOP PLUS</div>
+
         <div><span>CLIENT</span> {{$customer->name}}</div>
         <div><span>ADDRESS</span> {{$customer->address}}</div>
         <div><span>EMAIL</span> <a href="mailto:{{$customer->email}}">{{$customer->email}}</a></div>
@@ -185,7 +181,7 @@
             <td class="qty">{{$details['quantity']}}</td>
             <td class="total">${{ number_format($details['price'] * $details['quantity'])}} </td>
         </tr>
-@endforeach
+        @endforeach
         <tr>
             <td colspan="4">TOTAL</td>
             <td class="total">${{ number_format($bill->total)}}</td>
@@ -201,11 +197,11 @@
 </main>
 <footer>
     Invoice was created on a computer and is valid without the signature and seal.
-
-
 </footer>
+
 <?php
 session()->forget('cart');
 ?>
+
 </body>
 </html>

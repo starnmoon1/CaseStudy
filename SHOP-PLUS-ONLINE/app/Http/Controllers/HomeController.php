@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Services\Categories\CategoryServiceInterface;
 use App\Http\Services\Products\ProductServiceInterface;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ class HomeController extends Controller
 {
     protected $productService;
     protected $categoryService;
+
     public function __construct(ProductServiceInterface $productService, CategoryServiceInterface $categoryService)
     {
         $this->productService=$productService;
@@ -17,9 +19,10 @@ class HomeController extends Controller
     }
 
     public function index() {
+        $comments = Comment::all();
         $products = $this->productService->getAll();
         $categories = $this->categoryService->getAll();
-        return view('home', compact(['products','categories']));
+        return view('home', compact(['products','categories','comments']));
     }
 
     public function getProductsByCategory($id) {
