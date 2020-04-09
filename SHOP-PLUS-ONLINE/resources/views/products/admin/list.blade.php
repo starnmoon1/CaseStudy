@@ -27,7 +27,7 @@
                             <td>{{$product->id}}</td>
                             <td>{{$product->name}}</td>
                             <td>
-                                <img src="{{asset('storage/images/'.$product->image)}}" width="150">
+                                <img src="{{asset($product->image)}}" width="150">
                             </td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->content}}</td>
